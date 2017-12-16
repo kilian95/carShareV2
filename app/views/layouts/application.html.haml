@@ -8,4 +8,22 @@
 	%body	
 		-flash.each do |name, msg|
 			=content_tag :div, msg, class: "alert alert-info"
+
+		%nav.navbar.navbar-default.custom
+			-if user_signed_in?
+				.container-fluid
+					.navbar-header
+						.navbar-brand 
+							=link_to " Car Share ", root_path
+					%ul.nav.navbar-nav
+						%li.active
+							=link_to "Home", root_path
+						%li 
+							=link_to "Offer a Lift", new_offer_path
+						%li
+							= link_to "Sign Out", destroy_user_session_path, method: :delete
+						%li
+							=link_to current_user.email, root_path	
+			-else	
+				=link_to "Sign In", new_user_session_path, class: "btn btn-primary"
 		= yield

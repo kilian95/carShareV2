@@ -8,9 +8,13 @@
         - @offer.errors.full_messages.each do |msg|
           %li
             = msg
-  
-  .form-group
-    = f.input :pickup, input_html: {class: 'form-control', id: "pickup"}
-    = f.input :dropoff, input_html: {class: 'form-control', id: "dropoff"}
-    = f.input :description, input_html: {class: 'form-control', id: "destination"}
-    = f.button :submit, class: "btn btn-primary"
+
+  .row
+    .col-sm-6         
+      .form-group
+        = f.input :pickup, input_html: {class: 'form-control', id: "pickup"}
+        = f.input :dropoff, input_html: {class: 'form-control', id: "dropoff"}
+        = f.input :description, input_html: {class: 'form-control', id: "destination"}
+        = f.button :submit, class: "btn btn-primary"
+    .col-sm-6     
+      = render 'map'    
