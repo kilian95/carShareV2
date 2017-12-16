@@ -1,0 +1,16 @@
+= simple_form_for @offer, html: { multipart: true } do |f|
+  - if @offer.errors.any?
+    #errors
+      %h2
+        \= pluralize(@offer.errors.count, "error")
+        prevented this post from saving
+      %ul
+        - @offer.errors.full_messages.each do |msg|
+          %li
+            = msg
+  
+  .form-group
+    = f.input :pickup, input_html: {class: 'form-control', id: "pickup"}
+    = f.input :dropoff, input_html: {class: 'form-control', id: "dropoff"}
+    = f.input :description, input_html: {class: 'form-control', id: "destination"}
+    = f.button :submit, class: "btn btn-primary"

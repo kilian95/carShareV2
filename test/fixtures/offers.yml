@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pickup: MyString
+  dropoff: MyString
+  description: MyText
+
+two:
+  pickup: MyString
+  dropoff: MyString
+  description: MyText
