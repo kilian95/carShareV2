@@ -1,6 +1,7 @@
 %h1= @offer.pickup
 %h1= @offer.dropoff
 %p= @offer.description
+%p= @offer.user.email
 
 =link_to "Back", root_path
 =link_to "Edit", edit_offer_path

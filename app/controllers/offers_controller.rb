@@ -10,11 +10,11 @@ class OffersController < ApplicationController
 	end
 
 	def new
-		@offer = Offer.new
+		@offer = current_user.offers.build
 	end
 
 	def create
-		@offer = Offer.new(offer_params)
+		@offer = current_user.offers.build(offer_params)
 
 		if @offer.save
 			redirect_to @offer, notice: "suucesfully created new offer"
