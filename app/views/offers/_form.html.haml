@@ -10,11 +10,14 @@
             = msg
 
   .row
-    .col-sm-6         
+    .col-sm-2 
+    .col-sm-3         
       .form-group
-        = f.input :pickup, input_html: {class: 'form-control', id: "pickup"}
-        = f.input :dropoff, input_html: {class: 'form-control', id: "dropoff"}
+        = f.input :pickup, input_html: {class: 'form-control', id: "origin-input"}
+        = f.input :dropoff, input_html: {class: 'form-control', id: "destination-input"}
         = f.input :description, input_html: {class: 'form-control', id: "destination"}
         = f.button :submit, class: "btn btn-primary"
-    .col-sm-6     
-      = render 'map'    
+    .col-sm-5     
+      = render 'map'     
+
+      
