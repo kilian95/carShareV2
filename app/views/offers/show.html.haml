@@ -2,6 +2,14 @@
 %h1= @offer.dropoff
 %p= @offer.description
 %p= @offer.user.email
+smoking
+= @offer.smoking
+= @offer.luggage
+= @offer.flexibility
+= @offer.seats
+= @offer.food
+= @offer.date
+
 
 =link_to "Back", root_path
 =link_to "Edit", edit_offer_path
