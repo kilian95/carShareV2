@@ -26,4 +26,5 @@
 							=link_to current_user.email, root_path	
 			-else	
 				=link_to "Sign In", new_user_session_path, class: "btn btn-primary"
-		= yield
+		.contentsContainer		
+			= yield
