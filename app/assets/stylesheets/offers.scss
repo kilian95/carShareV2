@@ -23,7 +23,7 @@ html, body {
 	height: 100%;
 }
 
-.offerList{
+.customLabel{
   margin-bottom: 15px;
 }
 
@@ -79,4 +79,12 @@ html, body {
   font-family: Roboto;
   font-size: 13px;
   font-weight: 300;
+}
+
+#tip{
+  display: none;
+}
+
+.step2{
+  display: none;
 }

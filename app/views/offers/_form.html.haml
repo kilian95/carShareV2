@@ -13,27 +13,35 @@
     .col-sm-2 
     .col-sm-3
       %h1 Offer a Lift
-  .row#fuck
+  .row
     .col-sm-2 
     .col-sm-3         
       .form-group
         .step1
           %h3 Step 1
-          = f.input :pickup, input_html: {class: 'form-control'}
-          = f.input :dropoff, {class: 'form-control', id: "destination-input"}
+          %p#tip Enter in the pickup and drop off location in the map opposite.
+          = f.input :pickup, :readonly => true, input_html: {class: 'form-control', id: 'pickup'}
+          = f.input :dropoff, :readonly => true , input_html: {class: 'form-control', id: 'dropoff'}
           = f.input :description, input_html: {class: 'form-control', id: "destination"}
-          .offerList
+          .customLabel
             = f.label :date, "Time and Date"
             #datetimepicker1.input-group.date
-              =f.text_field :date, input_html: {class: 'form-control'}
               %span.input-group-addon
                 %span.glyphicon.glyphicon-calendar
-          = f.input :seats, :label => "Available seats", :collection => ["1", "2", "3", "4"], :selected => "1"
+              =f.text_field :date, input_html: {class: 'form-control'}
+              
+          = f.input :seats, :label => "Available seats", :collection => ["1", "2", "3", "4"], :selected => "1", input_html: {id: 'noOfSeats'}
           %button.btn.btn-primary.btn-block#continueBtn{:type => "button"} Continue
 
       .step2
         %h3 Step 2
-        .offerList
+        = f.label :Price, "Price per passenger"
+        .customLabel
+          .input-group
+            %span.input-group-addon £
+            = f.input :price, :label => false, input_html: {class: 'form-control currency', id: 'price' }
+
+        .customLabel
           = f.label :smoking, "Smoking" 
           %br/
           = f.radio_button :smoking, 'True'
@@ -41,7 +49,7 @@
           = f.radio_button :smoking, 'False' 
           Not Allowed
           %br/
-        .offerList  
+        .customLabel  
           = f.label :food, "Food" 
           %br/
           = f.radio_button :food, 'True'
@@ -53,7 +61,11 @@
         
         %span.glyphicon.glyphicon-info-sign{"data-toggle" => "tooltip", :title => "Flexibility specifies how long you are willing to wait to pick up the passenger after the agreed time."}
 
-        = f.input :flexibility, :label => "Flexibility", :collection => ["On time", "10 Minute Window", "20 Minute Window", "30 Minute Window"], :selected => "None"
+        = f.input :flexibility, :label => "Flexibility", :collection => ["On time", "10 Minute Window", "20 Minute Window", "30 Minute Window"], :selected => "On time"
+
+        = f.input :detour, :label => "Detour", :collection => ["None", "5 Miles", "10 Miles", "15 Miles"], :selected => "None"
+        
         = f.button :submit, {class: "btn btn-primary btn-block"}
     .col-sm-5#mapContainer     
       =render 'map'
+      #results
