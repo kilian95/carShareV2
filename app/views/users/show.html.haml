@@ -1,0 +1,75 @@
+.row
+	.col-md-6
+		%h3
+			=@user.firstName
+			=@user.lastName
+		%p
+			Member since:
+			=@user.created_at.strftime("%d-%m-%Y")	
+	.col-md-6.pull-right
+		/ display edit button only when the account belongs to the signed in user
+		-if @user.id == current_user.id
+			=link_to "Edit Profile", edit_user_registration_path, class: "btn btn-primary pull-right"
+		-else	
+			%button.btn.btn-primary.pull-right{:type => "button"} Private Message				
+.row
+	.col-md-6	
+		-if @user.bio
+			%p= @user.bio
+		-elsif @user.id == current_user.id
+			=link_to "Add a bio to your profile", edit_user_registration_path		
+.row
+	.col-lg-4
+		.panel.panel-primary.blue
+			.panel-Heading
+				.row
+					.col-xs-3
+						%span.glyphicon.glyphicon-user
+					.col-xs-9.text-right
+						%h1=4
+						Rides Offered!
+			.panel-footer.blue
+				=link_to "Offer a Lift", new_offer_path	
+	.col-lg-4
+		.panel.panel-primary.green
+			.panel-Heading
+				.row
+					.col-xs-3
+						%span.glyphicon.glyphicon-user
+					.col-xs-9.text-right
+						%h1=2
+						Rides Requested!
+			.panel-footer.green
+				=link_to "Search for a Lift", new_offer_path	
+	.col-lg-4
+		.panel.panel-primary.red
+			.panel-Heading
+				.row
+					.col-xs-3
+						%span.glyphicon.glyphicon-user
+					.col-xs-9.text-right
+						%h1=320
+						Miles shared!
+			.panel-footer.red
+				Total distance travelled as a Driver or passenger
+
+.row
+	.col-lg-8
+		.panel.panel-primary.info
+			%h4 Car Information
+			-if @user.make
+				%p
+					=@user.firstName
+					drives a
+					=@user.year.strftime("%Y")	 
+					=@user.make
+					=@user.model
+			-elsif @user.id == current_user.id
+				%p 
+					=link_to "Add information about your car", edit_user_registration_path
+			-else
+				%p This user has not provied this information yet.				
+.row
+	.col-lg-8
+		.panel.panel-primary.info
+			%h4 Recent Lifts

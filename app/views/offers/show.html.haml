@@ -1,6 +1,6 @@
 .row
 	.col-lg-4
-		.panel.panel-primary.seats
+		.panel.panel-primary.blue
 			.panel-Heading
 				.row
 					.col-xs-3
@@ -11,13 +11,13 @@
 							Seat Available!
 						-else
 							Seats Available!
-			.panel-footer.seats
+			.panel-footer.blue
 				£
 				= @offer.price
 				per passenger.
 
 	.col-lg-4
-		.panel.panel-primary.flexibility
+		.panel.panel-primary.green
 			.panel-Heading
 				.row
 					.col-xs-3
@@ -28,11 +28,11 @@
 							No Flexibility
 						-else	
 							Flexibility!		
-			.panel-footer.flexibility
+			.panel-footer.green
 				The amount of time the driver is willing to wait.
 
 	.col-lg-4
-		.panel.panel-primary.detour
+		.panel.panel-primary.red
 			.panel-Heading
 				.row
 					.col-xs-3
@@ -44,7 +44,7 @@
 						-elsif @offer.detour == "None"
 							No Detour	
 						
-			.panel-footer.detour
+			.panel-footer.red
 				Distance willing to travel to pick up passengers. 
 .row
 	.col-lg-8
@@ -91,17 +91,20 @@
 	.col-lg-8
 		.panel.panel-primary.info
 			%h4 Driver
-			%h5.name= @offer.user.firstName
-			%h5.name=@offer.user.lastName
-			%br/
-			Last online: 
-			=@offer.user.last_sign_in_at
-			%br/
-			Member since:
-			=@offer.user.created_at
+			%h5
+				=@offer.user.firstName
+				=@offer.user.lastName
+			%p
+				Last online: 
+				= @offer.user.last_sign_in_at
+			%p
+				Member since:
+				=@offer.user.created_at.strftime("%d-%m-%Y")	
 	.col-lg-4
-		.panel.panel-primary.info
-			%button.btn.btn-primary.btn-block{:type => "button"} Book This Lift
+		/ only display if offer is not made by the current user
+		-if @offer.user.id != current_user.id
+			.panel.panel-primary.info
+				%button.btn.btn-primary.btn-block{:type => "button"} Book This Lift
 
 
 
