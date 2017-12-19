@@ -88,3 +88,60 @@ html, body {
 .step2{
   display: none;
 }
+
+.glyphicon-user, .glyphicon-hourglass, .glyphicon-road{
+  font-size: 70px;
+}
+
+.panel-Heading{
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.panel.panel-primary{
+   color: #fff;
+}
+
+.panel.panel-primary.info{
+   color: #333333;
+   padding: 10px;
+}
+
+.panel-footer{
+  background-color: #f1f1f1;
+}
+.panel.panel-primary.seats{
+  background-color: #2c90d8;
+}
+
+.panel-footer.seats{
+  color: #2c90d8;
+}
+
+h4.info{
+  display:inline;
+}
+
+.panel.panel-primary.flexibility{
+  background-color: #1baf49;
+}
+
+.panel-footer.flexibility{
+  color: #1baf49;
+}
+
+.panel.panel-primary.detour{
+  background-color: #d9534f;
+}
+
+.panel-footer.detour{
+  color: #d9534f;
+}
+
+.name{
+  display: inline;
+}
+
+
+

@@ -1,18 +1,111 @@
-%h1= @offer.pickup
-%h1= @offer.dropoff
-%p= @offer.description
-%p= @offer.user.email
-smoking
-= @offer.smoking
-= @offer.luggage
-= @offer.flexibility
-= @offer.seats
-= @offer.food
-= @offer.date
-= @offer.price
-= @offer.detour
+.row
+	.col-lg-4
+		.panel.panel-primary.seats
+			.panel-Heading
+				.row
+					.col-xs-3
+						%span.glyphicon.glyphicon-user
+					.col-xs-9.text-right
+						%h1= @offer.seats
+						-if @offer.seats < 2
+							Seat Available!
+						-else
+							Seats Available!
+			.panel-footer.seats
+				£
+				= @offer.price
+				per passenger.
+
+	.col-lg-4
+		.panel.panel-primary.flexibility
+			.panel-Heading
+				.row
+					.col-xs-3
+						%span.glyphicon.glyphicon-hourglass
+					.col-xs-9.text-right
+						%h1= @offer.flexibility
+						-if @offer.flexibility == "On time"
+							No Flexibility
+						-else	
+							Flexibility!		
+			.panel-footer.flexibility
+				The amount of time the driver is willing to wait.
+
+	.col-lg-4
+		.panel.panel-primary.detour
+			.panel-Heading
+				.row
+					.col-xs-3
+						%span.glyphicon.glyphicon-road
+					.col-xs-9.text-right
+						%h1= @offer.detour
+						-if @offer.detour == "10 Miles"
+							Max for detour!
+						-elsif @offer.detour == "None"
+							No Detour	
+						
+			.panel-footer.detour
+				Distance willing to travel to pick up passengers. 
+.row
+	.col-lg-8
+		.panel.panel-primary.info
+			.row
+				.col-sm-4
+					%h4 Pick Up:
+				.col-sm-4
+				%h4= @offer.pickup
+			.row
+				.col-sm-4
+					%h4 Drop Off:
+				.col-sm-4
+				%h4= @offer.dropoff	
+			.row
+				.col-sm-4
+					%h4 Date:
+				.col-sm-4
+				%h4= @offer.date			
+	.col-lg-4
+		.panel.panel-primary.info	
+			.row
+				.col-sm-6
+					%h5 Smoking:
+				.col-sm-6
+					-if @offer.smoking
+						%h5 Permitted
+					-else	
+						%h5 Not permitted
+			.row
+				.col-sm-6
+					%h5 Food:
+				.col-sm-6
+					-if @offer.food
+						%h5 Permitted
+					-else	
+						%h5 Not permitted
+			.row
+				.col-sm-6
+					%h5 Luggage:
+				.col-sm-6
+					%h5= @offer.luggage							
+.row
+	.col-lg-8
+		.panel.panel-primary.info
+			%h4 Driver
+			%h5.name= @offer.user.firstName
+			%h5.name=@offer.user.lastName
+			%br/
+			Last online: 
+			=@offer.user.last_sign_in_at
+			%br/
+			Member since:
+			=@offer.user.created_at
+	.col-lg-4
+		.panel.panel-primary.info
+			%button.btn.btn-primary.btn-block{:type => "button"} Book This Lift
 
 
-=link_to "Back", root_path
-=link_to "Edit", edit_offer_path
-=link_to "Delete", offer_path, method: :delete, data: {confirm: "Are yous sure?"}
+
+
+-if @offer.user.id == current_user.id
+	=link_to "Edit", edit_offer_path
+	=link_to "Delete", offer_path, method: :delete, data: {confirm: "Are yous sure?"}

@@ -2,7 +2,7 @@ class OffersController < ApplicationController
 	before_action :find_offer, only: [:show, :edit, :update, :destroy]
 
 	def index
-		@offers = Offer.all.order("created_at DESC")
+		@offers = Offer.limit(5).order("created_at DESC")
 	end
 
 	def show

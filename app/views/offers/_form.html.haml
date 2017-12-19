@@ -61,7 +61,7 @@
         
         %span.glyphicon.glyphicon-info-sign{"data-toggle" => "tooltip", :title => "Flexibility specifies how long you are willing to wait to pick up the passenger after the agreed time."}
 
-        = f.input :flexibility, :label => "Flexibility", :collection => ["On time", "10 Minute Window", "20 Minute Window", "30 Minute Window"], :selected => "On time"
+        = f.input :flexibility, :label => "Flexibility", :collection => ["On time", "10 Minutes", "20 Minutes", "30 Minutes"], :selected => "On time"
 
         = f.input :detour, :label => "Detour", :collection => ["None", "5 Miles", "10 Miles", "15 Miles"], :selected => "None"
         

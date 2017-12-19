@@ -1,4 +1,23 @@
+%h1 Most Recent Lift Offers
+
 - @offers.each do |offer|
-	%h2= link_to offer.pickup, offer
-	%p to
-	%h2= link_to offer.dropoff, offer
+	.panel.panel-primary.info
+		.row
+			.col-sm-4
+				%h4 Pick Up:
+			.col-sm-4
+				%h4= link_to offer.pickup, offer
+		.row
+			.col-sm-4
+				%h4 Drop Off:
+			.col-sm-4
+				%h4= link_to offer.dropoff, offer	
+		.row
+			.col-sm-4
+				%h4 Date:
+			.col-sm-4
+				%h4= offer.date
+			.col-sm-4
+				Posted By: 
+				%h5.name= offer.user.firstName
+				%h5.name= offer.user.lastName					
