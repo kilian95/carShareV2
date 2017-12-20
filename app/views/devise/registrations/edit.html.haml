@@ -9,6 +9,13 @@
       - if devise_mapping.confirmable? && resource.pending_reconfirmation?
         %p
           Currently waiting confirmation for: #{resource.unconfirmed_email}
+
+      .customLabel    
+        = f.label :avatar, "Profile Photo"
+      = f.label :avatar do
+        = f.file_field :avatar
+        = f.hidden_field :avatar_cache  
+
       = f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false 
       = f.input :password_confirmation, required: false
     .panel.panel-primary.info  
@@ -20,7 +27,6 @@
       = f.input :dob, :start_year => 1930, :end_year => 2000, autocomplete: "off", label: "Year of birth"
     .panel.panel-primary.info  
       %h4 Your Car Infomation
-      / = f.input :make, autocomplete: "off"
       = f.input :make, autocomplete: "off", :collection => ["Ford", "VolksWagen", "Skoda", "BMW", "Mercedes", "Nissan," "Kia", "Mini", "Suzuki", "Toyota", "Pugeot"], :selected => "Ford"
       = f.input :model, autocomplete: "off"
       = f.input :year, :start_year => 1980, :end_year => 2018, autocomplete: "off"

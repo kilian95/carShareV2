@@ -6,7 +6,7 @@
 			.col-sm-4
 				%h4 Pick Up:
 			.col-sm-4
-				%h4= link_to offer.pickup, offer
+				%h4= link_to offer.pickup, offer	
 		.row
 			.col-sm-4
 				%h4 Drop Off:
@@ -18,7 +18,7 @@
 			.col-sm-4
 				%h4= offer.date
 			.col-sm-4
-				Posted By: 
 				%h5
-					= offer.user.firstName
-					= offer.user.lastName					
+					Posted By: 
+					=link_to offer.user.firstName, user_path(offer.user.id)
+					=link_to offer.user.lastName, user_path(offer.user.id)

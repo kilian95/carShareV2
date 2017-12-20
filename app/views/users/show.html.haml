@@ -1,12 +1,20 @@
 .row
-	.col-md-6
-		%h3
-			=@user.firstName
-			=@user.lastName
-		%p
-			Member since:
-			=@user.created_at.strftime("%d-%m-%Y")	
-	.col-md-6.pull-right
+	.col-md-8
+		.col-sm-3.avatar
+			=image_tag @user.avatar.url.to_s
+		.col-sm-3	
+			%h3
+				=@user.firstName
+				=@user.lastName
+			%p
+				Member since:
+				=@user.created_at.strftime("%d-%m-%Y")
+			-if @user.id == current_user.id
+				%p
+					=link_to "Change your profile photo", edit_user_registration_path		
+			
+					
+	.col-md-4.pull-right
 		/ display edit button only when the account belongs to the signed in user
 		-if @user.id == current_user.id
 			=link_to "Edit Profile", edit_user_registration_path, class: "btn btn-primary pull-right"
@@ -15,7 +23,7 @@
 .row
 	.col-md-6	
 		-if @user.bio
-			%p= @user.bio
+			%h5= @user.bio
 		-elsif @user.id == current_user.id
 			=link_to "Add a bio to your profile", edit_user_registration_path		
 .row
@@ -26,8 +34,11 @@
 					.col-xs-3
 						%span.glyphicon.glyphicon-user
 					.col-xs-9.text-right
-						%h1=4
-						Rides Offered!
+						%h1= @totalOffers
+						-if @totalOffers > 1
+							Rides Offered!
+						-else	
+							Ride Offered!
 			.panel-footer.blue
 				=link_to "Offer a Lift", new_offer_path	
 	.col-lg-4
@@ -48,7 +59,7 @@
 					.col-xs-3
 						%span.glyphicon.glyphicon-user
 					.col-xs-9.text-right
-						%h1=320
+						%h1= @totalMiles
 						Miles shared!
 			.panel-footer.red
 				Total distance travelled as a Driver or passenger
@@ -72,4 +83,38 @@
 .row
 	.col-lg-8
 		.panel.panel-primary.info
-			%h4 Recent Lifts
+			%h4 Recent Lift Offers
+			- @offers.each do |offer|
+				.row
+					.col-md-12
+						%h4
+							=link_to offer.pickup, offer
+							to
+							=link_to offer.dropoff, offer
+							on
+							=offer.date.strftime("%d-%m-%Y at %H:%M")	
+
+			
+						
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

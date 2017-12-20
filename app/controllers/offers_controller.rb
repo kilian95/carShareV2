@@ -42,7 +42,8 @@ class OffersController < ApplicationController
 	private
 
 	def offer_params
-		params.require(:offer).permit(:pickup, :dropoff, :description, :luggage, :smoking, :flexibility, :seats, :food, :date, :price, :detour)
+		params.require(:offer).permit(:pickup, :dropoff, :description, :luggage,
+		:smoking, :flexibility, :seats, :food, :date, :price, :detour, :miles)
 	end
 
 	# finds correct offer

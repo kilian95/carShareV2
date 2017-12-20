@@ -1,3 +1,9 @@
+%h1 Lift Offer
+%h2
+	=@offer.pickup
+	to
+	=@offer.dropoff
+
 .row
 	.col-lg-4
 		.panel.panel-primary.blue
@@ -91,20 +97,44 @@
 	.col-lg-8
 		.panel.panel-primary.info
 			%h4 Driver
-			%h5
-				=@offer.user.firstName
-				=@offer.user.lastName
-			%p
-				Last online: 
-				= @offer.user.last_sign_in_at
-			%p
-				Member since:
-				=@offer.user.created_at.strftime("%d-%m-%Y")	
+			.row
+				.col-sm-4.avatar
+					=image_tag @offer.user.avatar.url.to_s
+						
+				.col-sm-4
+					%h4
+						=link_to @offer.user.firstName, user_path(@offer.user.id)
+						=link_to @offer.user.lastName, user_path(@offer.user.id)
+					%p 
+						Member since:
+						=@offer.user.created_at.strftime("%d-%m-%Y")
+
+					-if @offer.user.make	
+						%p
+							Drives a 
+							=@offer.user.year.strftime("%Y")
+							=@offer.user.make	
+							=@offer.user.model		
 	.col-lg-4
 		/ only display if offer is not made by the current user
 		-if @offer.user.id != current_user.id
 			.panel.panel-primary.info
-				%button.btn.btn-primary.btn-block{:type => "button"} Book This Lift
+				%button.btn.btn-primary.btn-block{:type => "button"} Private Message	
+				%button.btn.btn-primary.btn-block{:type => "button"} Book This Lift			
+
+
+	/ .col-lg-8
+	/ 	.panel.panel-primary.info
+	/ 		%h4 Driver
+	/ 		.col-sm-4.avatar
+	/ 			=image_tag @offer.user.avatar.url.to_s
+	/ 		.col-sm-4	
+	/ 			%h5
+	/ 			=link_to @offer.user.firstName, user_path(@offer.user.id)
+	/ 			=link_to @offer.user.lastName, user_path(@offer.user.id)
+	/ 		%p
+	/ 			
+	/ 
 
 
 

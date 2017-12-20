@@ -43,6 +43,7 @@ $(function () {
     var miles = distance_text.substring(0, distance_text.length - 3);
     calulateCost(miles);
     $('#results').html("It is " + miles + " miles from " + origin + " to " + destination);
+    $("#totalMiles").val(miles);
   }
   
   function calulateCost(miles){
