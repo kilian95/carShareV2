@@ -119,25 +119,16 @@
 		/ only display if offer is not made by the current user
 		-if @offer.user.id != current_user.id
 			.panel.panel-primary.info
-				%button.btn.btn-primary.btn-block{:type => "button"} Private Message	
-				%button.btn.btn-primary.btn-block{:type => "button"} Book This Lift			
-
-
-	/ .col-lg-8
-	/ 	.panel.panel-primary.info
-	/ 		%h4 Driver
-	/ 		.col-sm-4.avatar
-	/ 			=image_tag @offer.user.avatar.url.to_s
-	/ 		.col-sm-4	
-	/ 			%h5
-	/ 			=link_to @offer.user.firstName, user_path(@offer.user.id)
-	/ 			=link_to @offer.user.lastName, user_path(@offer.user.id)
-	/ 		%p
-	/ 			
-	/ 
-
-
-
+				%button.btn.btn-primary.btn-block{:type => "button"} Private Message
+				= simple_form_for @offer, html: { multipart: true } do |f|
+					-if @offer.passenger_id != current_user.id
+						=f.hidden_field :passenger_id, value: current_user.id
+						= f.button :submit, "Book This Lift", {class: "btn btn-primary btn-block"}
+					-else 
+						/ reset passenger_id if user cancels lift
+						=f.hidden_field :passenger_id, value: nil
+						= f.button :submit, "Cancel lift", {class: "btn btn-primary btn-block"}	
+					
 
 -if @offer.user.id == current_user.id
 	=link_to "Edit", edit_offer_path

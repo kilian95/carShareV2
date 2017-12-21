@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171220191212) do
+ActiveRecord::Schema.define(version: 20171220233024) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 20171220191212) do
     t.decimal "price", precision: 8, scale: 2
     t.string "detour"
     t.integer "miles"
+    t.integer "passenger_id"
+    t.index ["passenger_id"], name: "index_offers_on_passenger_id"
     t.index ["user_id"], name: "index_offers_on_user_id"
   end
 

@@ -8,6 +8,12 @@ class UsersController < ApplicationController
     @totalMiles = @user.offers.sum(:miles)
     @totalOffers = @user.offers.size
     @offers = @user.offers.limit(3).order("created_at DESC")
+
+    @allOffers = Offer.limit(10).order("created_at DESC")
+
+    @bookedOffers = @user.offers.where.not(passenger_id: nil).order("created_at DESC") 
+
+    @bookedLifts = @allOffers.where(passenger_id: @user.id).order("created_at DESC") 
   end 
 
   private

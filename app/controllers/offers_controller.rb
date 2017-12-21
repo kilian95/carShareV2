@@ -15,9 +15,8 @@ class OffersController < ApplicationController
 
 	def create
 		@offer = current_user.offers.build(offer_params)
-
 		if @offer.save
-			redirect_to @offer, notice: "suucesfully created new offer"
+			redirect_to @offer, notice: "sucesfully created new offer"
 		else
 			render 'new'
 		end		
@@ -33,7 +32,11 @@ class OffersController < ApplicationController
 
 	def update
 		if @offer.update(offer_params)
-			redirect_to @offer, notice: "Offer was sucesfuly updated"
+			if @offer.user.id == current_user.id
+				redirect_to @offer, notice: "Offer was sucesfuly updated"
+			else 
+				redirect_to @offer, notice: "Lift succesfully booked"
+			end		
 		else
 			render 'edit'	
 		end	
@@ -43,7 +46,7 @@ class OffersController < ApplicationController
 
 	def offer_params
 		params.require(:offer).permit(:pickup, :dropoff, :description, :luggage,
-		:smoking, :flexibility, :seats, :food, :date, :price, :detour, :miles)
+		:smoking, :flexibility, :seats, :food, :date, :price, :detour, :miles, :passenger_id)
 	end
 
 	# finds correct offer

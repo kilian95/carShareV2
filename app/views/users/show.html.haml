@@ -92,7 +92,38 @@
 							to
 							=link_to offer.dropoff, offer
 							on
-							=offer.date.strftime("%d-%m-%Y at %H:%M")	
+							=offer.date.strftime("%d-%m-%Y at %H:%M")
+.row
+	.col-lg-8
+		.panel.panel-primary.info
+			%h4 Your upcoming offers that have passengers
+			- @bookedOffers.each do |bookedOffer|
+				.row
+					.col-md-12
+						%h4
+							=link_to bookedOffer.pickup, bookedOffer
+							to
+							=link_to bookedOffer.dropoff, bookedOffer
+							on
+							=bookedOffer.date.strftime("%d-%m-%Y at %H:%M")
+						%h5
+							=link_to "This passenger booked your lift", user_path(bookedOffer.passenger_id)
+.row
+	.col-lg-8
+		.panel.panel-primary.info
+			%h4 Your booked lifts
+			- @bookedLifts.each do |bookedLift|
+				.row
+					.col-md-12
+						%h4
+							=link_to bookedLift.pickup, bookedLift
+							to
+							=link_to bookedLift.dropoff, bookedLift
+							on
+							=bookedLift.date.strftime("%d-%m-%Y at %H:%M")
+						%h5
+							You booked a lift with
+							=link_to bookedLift.user.firstName, user_path(bookedLift.user.id)																
 
 			
 						
