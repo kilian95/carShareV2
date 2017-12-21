@@ -35,10 +35,10 @@
 						%span.glyphicon.glyphicon-user
 					.col-xs-9.text-right
 						%h1= @totalOffers
-						-if @totalOffers > 1
-							Rides Offered!
-						-else	
+						-if @totalOffers == 1
 							Ride Offered!
+						-else	
+							Rides Offered!
 			.panel-footer.blue
 				=link_to "Offer a Lift", new_offer_path	
 	.col-lg-4
@@ -48,8 +48,11 @@
 					.col-xs-3
 						%span.glyphicon.glyphicon-user
 					.col-xs-9.text-right
-						%h1=2
-						Rides Requested!
+						%h1= @totalBooked
+						-if @totalBooked == 1
+							Ride Requested!
+						-else	
+							Rides Requested!
 			.panel-footer.green
 				=link_to "Search for a Lift", new_offer_path	
 	.col-lg-4
