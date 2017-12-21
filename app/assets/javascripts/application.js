@@ -18,3 +18,4 @@
 //= require bootstrap-datetimepicker
 //= require offers
 //= require_tree .
+//= require_tree ./channels

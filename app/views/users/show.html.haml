@@ -18,8 +18,14 @@
 		/ display edit button only when the account belongs to the signed in user
 		-if @user.id == current_user.id
 			=link_to "Edit Profile", edit_user_registration_path, class: "btn btn-primary pull-right"
+			=link_to "Messages", user_chats_path(:user_id => @user.id), class: "btn btn-primary pull-right messages"
+			
 		-else	
-			%button.btn.btn-primary.pull-right{:type => "button"} Private Message				
+			= link_to(user_chats_path(current_user, :other_user => @user.id), method: :post) do
+				%button.btn.btn-primary.pull-right{:type => "button"} Private Message			
+				
+
+			
 .row
 	.col-md-6	
 		-if @user.bio
