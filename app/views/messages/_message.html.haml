@@ -1,3 +1,18 @@
-%p
-  = message.user.email
-  \: #{message.content}
+-if message.user == current_user
+	.row
+		.col-lg-4
+		.col-lg-5.send
+			.panel.panel-primary.send
+				= message.user.firstName
+				\: #{message.content}
+			= message.created_at.strftime("%d %B %H:%M")	
+-else
+	.row
+		.col-lg-5
+			.col-xs-1.recieve
+				=image_tag message.user.avatar.url.to_s
+			.col-md-11.recieve
+				.panel.panel-primary.recieve
+					= message.user.firstName
+					\: #{message.content}
+				= message.created_at.strftime("%d %B %H:%M")	

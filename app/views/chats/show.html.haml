@@ -1,14 +1,23 @@
-%div
-  %h5
-    Chat with #{@other_user.email}
-  - if @chat.messages.any?
-    #messages
-      = render partial: 'messages/message', collection: @chat.messages.order(id: :asc)
-  - else
-    #messages
-= render partial: 'messages/message_form', locals: {message: @message, chat: @chat}
+.container
+  %h4
+    Chatting with
+    =link_to @other_user.firstName, user_path(@other_user.id)
+    =link_to @other_user.lastName, user_path(@other_user.id)
+  %p#message
+    Last active: 
+    =@other_user.current_sign_in_at.strftime("%B %d at %H:%m")
+  .container.pre-scrollable#messages  
+    - if @chat.messages.any?
+      #messages
+        = render partial: 'messages/message', collection: @chat.messages.order(id: :asc)
+    - else
+      #messages
+    = render partial: 'messages/message_form', locals: {message: @message, chat: @chat}
+
 :javascript
   createMessageChannel();
   // app/assets/javascripts/channels/messages.js 
   messageForm();
   // app/assets/javascripts/messages_form.js
+
+  scrollToBottom();

@@ -32,7 +32,7 @@ class OffersController < ApplicationController
 
 	def update
 		if @offer.update(offer_params)
-			if @offer.user.id == current_user.id
+			if @offer.user == current_user
 				redirect_to @offer, notice: "Offer was sucesfuly updated"
 			else 
 				redirect_to @offer, notice: "Lift succesfully booked"

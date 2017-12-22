@@ -9,14 +9,14 @@
 			%p
 				Member since:
 				=@user.created_at.strftime("%d-%m-%Y")
-			-if @user.id == current_user.id
+			-if @user == current_user
 				%p
 					=link_to "Change your profile photo", edit_user_registration_path		
 			
 					
 	.col-md-4.pull-right
 		/ display edit button only when the account belongs to the signed in user
-		-if @user.id == current_user.id
+		-if @user == current_user
 			=link_to "Edit Profile", edit_user_registration_path, class: "btn btn-primary pull-right"
 			=link_to "Messages", user_chats_path(:user_id => @user.id), class: "btn btn-primary pull-right messages"
 			
@@ -30,7 +30,7 @@
 	.col-md-6	
 		-if @user.bio
 			%h5= @user.bio
-		-elsif @user.id == current_user.id
+		-elsif @user == current_user
 			=link_to "Add a bio to your profile", edit_user_registration_path		
 .row
 	.col-lg-4
@@ -84,7 +84,7 @@
 					=@user.year.strftime("%Y")	 
 					=@user.make
 					=@user.model
-			-elsif @user.id == current_user.id
+			-elsif @user == current_user
 				%p 
 					=link_to "Add information about your car", edit_user_registration_path
 			-else

@@ -22,7 +22,7 @@
 						%li 
 							=link_to "Offer a Lift", new_offer_path
 						%li
-							=link_to "My Account", user_path(current_user.id)
+							=link_to "My Account", user_path(current_user)
 						%li
 							= link_to "Sign Out", destroy_user_session_path, method: :delete	
 					-else

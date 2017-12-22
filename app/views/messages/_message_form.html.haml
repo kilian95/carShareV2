@@ -1,4 +1,6 @@
-= form_for message, remote: true,authenticity_token: true do |f|
-  = f.text_area :content, data: {textarea: "message"}
-  / hidden field keeps track of what chat this message belongs to
-  = f.hidden_field :chat_id, value: chat.id
+= simple_form_for message, remote: true,authenticity_token: true do |f|
+	.row
+		.col-lg-9
+			= f.input :content, label: false,  placeholder: "Type a message..."
+			/ hidden field keeps track of what chat this message belongs to
+			= f.hidden_field :chat_id, value: chat.id
