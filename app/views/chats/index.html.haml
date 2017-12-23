@@ -1,9 +1,11 @@
 %h1 Your Messages
 
-%ul
-  - if @existing_chats_users
-    - @existing_chats_users.each do |other_user|
-      - if other_user != current_user
-        %li
-          = link_to(user_chats_path(current_user, :other_user => other_user.id), method: :post) do
-            = other_user.email
+
+- if @existing_chats_users
+	- @existing_chats_users.each do |other_user|
+		- if other_user != current_user
+			.row
+				.col-lg-6
+					.panel.panel-primary.info
+						= link_to(user_chats_path(current_user, :other_user => other_user.id), method: :post) do
+							%h3= other_user.email

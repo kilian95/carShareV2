@@ -69,7 +69,7 @@
 				.col-sm-4
 					%h4 Date:
 				.col-sm-4
-				%h4= @offer.date			
+				%h4= @offer.date.strftime("%d-%m-%y at %H:%M")			
 	.col-lg-4
 		.panel.panel-primary.info	
 			.row
@@ -120,7 +120,8 @@
 		-if user_signed_in?
 			-if @offer.user != current_user
 				.panel.panel-primary.info
-					%button.btn.btn-primary.btn-block{:type => "button"} Private Message
+					= link_to(user_chats_path(current_user, :other_user => @offer.user.id), method: :post) do
+						%button.btn.btn-primary.btn-block.pull-right{:type => "button"} Private Message
 					= simple_form_for @offer, html: { multipart: true } do |f|
 						-if @offer.passenger_id != current_user
 							=f.hidden_field :passenger_id, value: current_user

@@ -7,9 +7,14 @@ def create
     #broadcasting out to messages channel including the chat_id so messages are broadcasted to specific chat only
     ActionCable.server.broadcast( "messages_#{message_params[:chat_id]}",
       message: message.content,
-      user: message.user.email
-    
+      userName: message.user.firstName,
+      user_id: message.user.id,
+      created_at: message.created_at.strftime("%d %B %H:%M"),
+      avatar: message.user.avatar.url.to_s  
     )
+    # respond_to do |format|
+    #   format.js { render :js => "scrollToBottom();" }
+    # end
   else
     redirect_to chats_path
   end
