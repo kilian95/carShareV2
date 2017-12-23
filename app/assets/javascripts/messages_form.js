@@ -10,8 +10,11 @@ function messageForm(){
         e.preventDefault(); // prevent another \n from being entered
         chatForm.submit();
         $(chatForm).trigger('reset');
+       
+        
       }
     }
+
   });
   $(document).keydown(function (e) {
     if(e.keyCode == 16) shiftDown = true;
@@ -20,4 +23,5 @@ function messageForm(){
     if(e.keyCode == 16) shiftDown = false;
   });
 
+  
 }

@@ -4,15 +4,3 @@
 			= f.text_area :content, placeholder: "Type a message...", data: {textarea: "message"}
 			/ this hidden field is for the MessagesController and Action Cable to keep track of what chat this message belongs to
 			= f.hidden_field :chat_id, value: chat.id
-
-:javascript			
-
-	//scroll to bottom when user hits enter button to show the new message
-	$('#message_content').keyup(function (e){
-		if (e.keyCode == 13) {
-			setTimeout(function(){
-				var div = document.getElementById("messages");
-				div.scrollTop = div.scrollHeight;
-			},200);
-		}
-	})	

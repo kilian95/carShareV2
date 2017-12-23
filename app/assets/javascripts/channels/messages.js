@@ -18,7 +18,7 @@ function createMessageChannel() {
       var urlSubString = url.substring(url.indexOf('/') + 1);
       var currentUserId = urlSubString.split("/");
       
-      //Messages that the signed in user sends should be displayed on the right
+      //Messages that the signed in user sends should be displayed on the right in real time
       if (data.user_id == currentUserId[1]){
         $("#messages").append("<div class='row'>"+
                                 "<div class='col-lg-4'></div>"+
@@ -28,7 +28,7 @@ function createMessageChannel() {
                                     "</div>"+ data.created_at +
                                   "</div>"+
                               "</div>");
-      //messages sent by the other user should be displayed on the left.  
+      //messages sent by the other user should be displayed on the left in real time  
       }else{
         $("#messages").append("<div class='row'>"+
                                 "<div class='col-lg-5'>"+
@@ -42,6 +42,7 @@ function createMessageChannel() {
                                 "</div>"+
                               "</div>");
       }
+      scrollToBottom(); //scroll to bottom of div so the new message is displayed
     },
   });
   return App.messages;
