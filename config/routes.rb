@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :messages, only:[:create]
   resources :offers
+  get '/search' => 'offers#search'
 	resources :users, only:[:show] do 
 		resources :chats, only: [:index, :show, :create]
 	end

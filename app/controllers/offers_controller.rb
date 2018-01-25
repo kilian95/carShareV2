@@ -3,6 +3,12 @@ class OffersController < ApplicationController
 
 	def index
 		@offers = Offer.limit(5).order("created_at DESC")
+		@search = Offer.search(params[:q])
+	end
+
+	def search
+		@search = Offer.search(params[:q])
+		@offerResults = @search.result.order("created_at DESC")
 	end
 
 	def show

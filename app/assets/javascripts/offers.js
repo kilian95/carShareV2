@@ -19,6 +19,11 @@ $(function () {
     $("#tip").css("display", "block");
   });
 
+  $("#search").click(function() {
+    $(".searchResults").show();
+
+  });
+
   //calculate distance
   function calculateDistance(origin, destination) {
     var service = new google.maps.DistanceMatrixService();
