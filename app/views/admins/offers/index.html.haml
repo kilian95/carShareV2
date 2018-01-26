@@ -1,0 +1,36 @@
+%h1 Offers
+.row-fluid
+	.block-body
+		%BR
+		%table.table.table-striped{width: '100%'}
+			%thead
+				%tr.medium
+					%th Offer ID
+					%th User ID
+					%th Created At
+					%th Date
+					%th Pick Up
+					%th Drop off
+			%tbody
+
+				= search_form_for @search, url: admins_offers_path do |f|
+					%td= f.text_field :id_eq, class: "form-control input-sm", size: 4
+					%td= f.text_field :user_id_eq, class: "form-control input-sm", size: 4
+					%td
+					%td
+					%td= f.text_field :pickup_cont, class: "form-control input-sm", size: 4
+					%td= f.text_field :dropoff_cont, class: "form-control input-sm", size: 4
+
+					%td.actions
+						%button.btn.btn-default{:type => "submit"}
+							%i.glyphicon.glyphicon-search
+						.btn.btn-default= link_to content_tag(:i, "", class: "glyphicon glyphicon-remove"),admins_offers_path , class:"cancel-button"
+
+				-@offers.each do |offer|
+					%tr.medium
+						%td= link_to offer.id, admins_offer_path(offer.id)
+						%td= offer.user_id	
+						%td= offer.created_at
+						%td= offer.date
+						%td= offer.pickup
+						%td= offer.dropoff    

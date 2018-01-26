@@ -1,0 +1,52 @@
+%h2 Admin Dashboard
+
+.col-md-4
+	.box.panel.panel-default 
+		%h1 All time
+		%ul
+			%li
+				Total users:
+			
+			%li
+				Total Offers:
+				=@totalLifts
+
+			%li
+				Total Lifts:
+				=@totalLifts
+
+.col-md-4	
+	.box.panel.panel-default 
+		%h1 Last 28 days
+		%ul
+			%li
+				New users:
+				
+			
+			%li
+				New Offers: 
+				
+			%li
+				New Lifts:
+				=@monthLifts
+				
+.col-md-4	
+	.box.panel.panel-default 
+		%h1 Last 24 hours
+		%ul
+			%li
+				New users:
+				
+			%li
+				New Offers: 
+				
+			%li
+				New Lifts:
+				
+
+
+%p
+	Total Amount of lifts all time:
+	=@totalLifts
+
+Total amount of lifts today:

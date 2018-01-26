@@ -1,0 +1,44 @@
+%h2 Offer 
+.row
+	
+	%dl.dl-horizontal
+		%dt= t 'Offer ID', :default => "Offer ID:" 
+		%dd= @offer.id
+	%dl.dl-horizontal
+		%dt= t 'User ID', :default => "User ID:" 
+		%dd= @offer.user_id		
+	%dl.dl-horizontal
+		%dt= t 'Created At', :default => "Created At:" 
+		%dd= @offer.created_at
+	%dl.dl-horizontal
+		%dt= t 'Pick Up', :default => "pick up:" 
+		%dd= @offer.pickup
+	%dl.dl-horizontal
+		%dt= t 'Drop off', :default => "Drop off:" 
+		%dd= @offer.dropoff
+	%dl.dl-horizontal
+		%dt= t 'Seats', :default => "Seats:" 
+		%dd= @offer.miles		
+	%dl.dl-horizontal
+		%dt= t 'Seats'
+		%dd= @offer.seats
+	%dl.dl-horizontal
+		%dt= t 'luggage' 
+		%dd= @offer.luggage
+	%dl.dl-horizontal
+		%dt= t 'flexibility' 
+		%dd= @offer.flexibility
+	%dl.dl-horizontal
+		%dt= t 'food'
+		%dd= @offer.food
+	%dl.dl-horizontal
+		%dt= t 'Smoking'
+		%dd= @offer.smoking
+	%dl.dl-horizontal
+		%dt= t 'Price' 
+		%dd= @offer.price
+	%dl.dl-horizontal
+		%dt= t 'Detour'
+		%dd= @offer.detour					
+%br/
+=link_to "Delete", offer_path, method: :delete, data:{confirm: "Are you sure?"}

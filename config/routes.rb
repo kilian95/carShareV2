@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
 
   devise_for :users
+  devise_for :admins
 
   resources :messages, only:[:create]
   resources :offers
@@ -11,6 +12,14 @@ Rails.application.routes.draw do
 	resources :users, only:[:show] do 
 		resources :chats, only: [:index, :show, :create]
 	end
+
+  namespace :admins do
+    root to: "dashboard#index"
+    get "offers", to: "offers#index"
+    get "offers/:id", to: "offers#show", as: 'offer'
+    get "users", to: "users#index"
+    get "users/:id", to: "users#show", as: 'user'
+  end
 
   root "offers#index"
 end
