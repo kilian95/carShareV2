@@ -3,7 +3,7 @@ class Admins::UsersController < ApplicationController
 
 	def index
 		@search = User.search(params[:q])
-		@users = @search.result
+		@users = @search.result.page(params[:page]).per(20)#show 20 per page
 	end
 
 	def find_user

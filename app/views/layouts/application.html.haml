@@ -31,7 +31,9 @@
 						%li
 							=link_to "Offers", admins_offers_path
 						%li
-							=link_to "Users", admins_users_path	
+							=link_to "Users", admins_users_path
+						%li
+							= link_to "Sign Out", destroy_admin_session_path, method: :delete		
 									
 					-else
 						%li.active

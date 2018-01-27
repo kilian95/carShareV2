@@ -4,6 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  #retrieve users that were created x amount of days ago from current time and date.
+  scope :last_x_days, -> (x) { where(created_at: x.days.ago..Time.zone.now) }       
+
 	has_many :offers
 	has_many :messages
   has_many :subscriptions

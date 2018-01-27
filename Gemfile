@@ -24,7 +24,8 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.17', '>= 4.17.47'
 gem 'momentjs-rails', '~> 2.17', '>= 2.17.1'
 gem 'carrierwave', '~> 1.2', '>= 1.2.1'  #imageupload
 gem 'mini_magick', '~> 4.8' #imageupload
-gem 'ransack', '~> 1.7'
+gem 'ransack', '~> 1.7' #search
+gem 'kaminari', '~> 1.1', '>= 1.1.1' #paginator
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

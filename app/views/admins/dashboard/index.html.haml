@@ -1,52 +1,60 @@
-%h2 Admin Dashboard
+// make sure only admin users can access this admins/
+-if admin_signed_in?
 
-.col-md-4
-	.box.panel.panel-default 
-		%h1 All time
-		%ul
-			%li
-				Total users:
-			
-			%li
-				Total Offers:
-				=@totalLifts
+	%h2 Admin Dashboard
+	.col-md-4
+		.box.panel.panel-default 
+			%h1 All time
+			%ul
+				%li
+					Total users:
+					=@totalUsers = User.count
+				
+				%li
+					Total Offers:
+					=@totalOffers
 
-			%li
-				Total Lifts:
-				=@totalLifts
+				%li
+					Total Lifts:
+					=@totalLifts
 
-.col-md-4	
-	.box.panel.panel-default 
-		%h1 Last 28 days
-		%ul
-			%li
-				New users:
+	.col-md-4	
+		.box.panel.panel-default 
+			%h1 Last 28 days
+			%ul
+				%li
+					New users:
+					=@last_28_days = User.last_x_days(28).count
 				
-			
-			%li
-				New Offers: 
-				
-			%li
-				New Lifts:
-				=@monthLifts
-				
-.col-md-4	
-	.box.panel.panel-default 
-		%h1 Last 24 hours
-		%ul
-			%li
-				New users:
-				
-			%li
-				New Offers: 
-				
-			%li
-				New Lifts:
-				
+				%li
+					New Offers: 
+					=@last_28_days = Offer.last_x_days(28).count
+
+				%li
+					New Lifts:
+					=@monthLifts
+					
+					
+	.col-md-4	
+		.box.panel.panel-default 
+			%h1 Last 24 hours
+			%ul
+				%li
+					New users:
+					=@last_1_days = User.last_x_days(1).count
+				%li
+					New Offers: 
+					=@last_1_days = Offer.last_x_days(1).count
+				%li
+					New Lifts:
+					=@dayLifts
 
 
-%p
-	Total Amount of lifts all time:
-	=@totalLifts
+	%p Other possible info could include
+	%ul
+		%li Recent tickets
+		%li Graph of above information ie. users created in the last 28 days
+		%li Heat map of popular locations travelled to
 
-Total amount of lifts today:
+-else
+	%h1 You shall not pass...		

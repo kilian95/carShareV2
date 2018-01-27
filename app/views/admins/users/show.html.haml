@@ -1,24 +1,27 @@
-%h2 User
+// make sure only admin users can access this admins/
+-if admin_signed_in?
+	%h2 User
+	.row
+		
+		%dl.dl-horizontal
+			%dt= t 'User ID', :default => "User ID:" 
+			%dd= @user.id	
+		%dl.dl-horizontal
+			%dt= t 'First Name', :default => "Last Name:" 
+			%dd= @user.firstName
+		%dl.dl-horizontal
+			%dt= t 'Last Name', :default => "Last Name:" 
+			%dd= @user.lastName
+		%dl.dl-horizontal
+			%dt= t 'Email', :default => "Email:" 
+			%dd= @user.email
+		%dl.dl-horizontal
+			%dt= t 'Gender', :default => "Gender:" 
+			%dd= @user.gender
+		%dl.dl-horizontal
+			%dt= t 'Last signed in', :default => "Last signed in:" 
+			%dd= @user.last_sign_in_at		
 
-.row
-	
-	%dl.dl-horizontal
-		%dt= t 'User ID', :default => "User ID:" 
-		%dd= @user.id	
-	%dl.dl-horizontal
-		%dt= t 'First Name', :default => "Last Name:" 
-		%dd= @user.firstName
-	%dl.dl-horizontal
-		%dt= t 'Last Name', :default => "Last Name:" 
-		%dd= @user.lastName
-	%dl.dl-horizontal
-		%dt= t 'Email', :default => "Email:" 
-		%dd= @user.email
-	%dl.dl-horizontal
-		%dt= t 'Gender', :default => "Gender:" 
-		%dd= @user.gender
-	%dl.dl-horizontal
-		%dt= t 'Last signed in', :default => "Last signed in:" 
-		%dd= @user.last_sign_in_at		
-
-=link_to "Delete", admins_users_path, method: :delete, data:{confirm: "Are you sure?"}
+	=link_to "Delete", admins_users_path, method: :delete, data:{confirm: "Are you sure?"}
+-else
+	%h1 You shall not pass...		

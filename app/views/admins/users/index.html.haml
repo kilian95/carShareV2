@@ -1,33 +1,38 @@
-%h1 Users
+// make sure only admin users can access this admins/
+-if admin_signed_in?
 
-.row-fluid
-	.block-body
-		%BR
-		%table.table.table-striped{width: '100%'}
-			%thead
-				%tr.medium
-					%th User ID
-					%th First Name
-					%th Last Name
-					%th Email
-					%th Gender
-			%tbody
-				= search_form_for @search, url: admins_users_path do |f|
-					%td= f.text_field :id_eq, class: "form-control input-sm", size: 4
-					%td= f.text_field :firstName_cont, class: "form-control input-sm", size: 4
-					%td= f.text_field :lastName_cont, class: "form-control input-sm", size: 4
-					%td= f.text_field :email_cont, class: "form-control input-sm", size: 4
-					%td= f.text_field :gender_eq, class: "form-control input-sm", size: 4
-					
-					%td.actions
-						%button.btn.btn-default{:type => "submit"}
-							%i.glyphicon.glyphicon-search
-						.btn.btn-default= link_to content_tag(:i, "", class: "glyphicon glyphicon-remove"),admins_users_path , class:"cancel-button"
-
-				-@users.each do |user|
+	%h1 Users
+	.row-fluid
+		.block-body
+			%BR
+			%table.table.table-striped{width: '100%'}
+				%thead
 					%tr.medium
-						%td= link_to user.id, admins_user_path(user.id)
-						%td= user.firstName	
-						%td= user.lastName
-						%td= user.email 
-						%td= user.gender    
+						%th User ID
+						%th First Name
+						%th Last Name
+						%th Email
+						%th Gender
+				%tbody
+					= search_form_for @search, url: admins_users_path do |f|
+						%td= f.text_field :id_eq, class: "form-control input-sm", size: 4
+						%td= f.text_field :firstName_cont, class: "form-control input-sm", size: 4
+						%td= f.text_field :lastName_cont, class: "form-control input-sm", size: 4
+						%td= f.text_field :email_cont, class: "form-control input-sm", size: 4
+						%td= f.text_field :gender_eq, class: "form-control input-sm", size: 4
+						
+						%td.actions
+							%button.btn.btn-default{:type => "submit"}
+								%i.glyphicon.glyphicon-search
+							.btn.btn-default= link_to content_tag(:i, "", class: "glyphicon glyphicon-remove"),admins_users_path , class:"cancel-button"
+
+					-@users.each do |user|
+						%tr.medium
+							%td= link_to user.id, admins_user_path(user.id)
+							%td= user.firstName	
+							%td= user.lastName
+							%td= user.email 
+							%td= user.gender    
+	=paginate @users
+-else
+	%h1 You shall not pass...
