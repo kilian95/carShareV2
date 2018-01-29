@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Ride Share</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- Plugin CSS -->
+    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/creative.css" rel="stylesheet">
+
+  </head>
+
+  <body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">Ride Share</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#search">Request Lift</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#portfolio">Offer Lift</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Sign Up</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Log In</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <header class="masthead text-center text-white d-flex">
+      <div class="container my-auto">
+        <div class="row">
+          <div class="col-lg-10 mx-auto">
+            <h1 class="text-uppercase black">
+              <strong>Lets travel together</strong>
+            </h1>
+            <hr>
+          </div>
+          <div class="col-lg-8 mx-auto">
+            <div id="offerRequest">
+              <div class="col-lg-6">
+                <a class="btn btn-primary btn-xl js-scroll-trigger" href="#search">Request Lift</a>
+              </div>
+              <div class="col-lg-6">
+                <a class="btn btn-primary btn-xl">Offer Lift</a>
+              </div>  
+            </div>    
+          </div>
+        </div>
+      </div>
+    </header>
+
+  
+    <section id="about">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading">How Ride Share works</h2>
+            <hr class="my-4">
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <i class="fa fa-4x fa-user text-primary mb-3 sr-icons"></i>
+              <h3 class="mb-3">1. Join</h3>
+              <p class="text-muted mb-0">Its free and quick to do.</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <i class="fa fa-4x fa-map-marker text-primary mb-3 sr-icons"></i>
+              <h3 class="mb-3">2. Search for a lift</h3>
+              <p class="text-muted mb-0">Lorem ipsum dolor amet tote bag 90's.</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <i class="fa fa-4x fa-road text-primary mb-3 sr-icons"></i>
+              <h3 class="mb-3">3. Select a driver</h3>
+              <p class="text-muted mb-0">Lorem ipsum dolor amet tote bag 90's.</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <i class="fa fa-4x fa-gbp text-primary mb-3 sr-icons"></i>
+              <h3 class="mb-3">4. Save money </h3>
+              <p class="text-muted mb-0">Lorem ipsum dolor amet tote bag 90's.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="p-0" id="search">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading">Search for availble lifts</h2>
+          <hr class="my-4">
+        </div>
+      </div>
+      <row>
+        <div id="searchHome">
+          <div class="col-lg-4 text-center" id="searchInput">
+            <div class="form-group searchInputs pull-right">
+              <input type="text" class="form-control" placeholder="Enter pickup location">
+            </div>
+            <div class="form-group searchInputs pull-right">
+              <input type="password" class="form-control" placeholder="Enter drop off location" >
+            </div>
+
+            <a class="btn btn-primary btn-xl" href="http://startbootstrap.com/template-overviews/creative/">Find Lift</a>
+          </div>
+           <div class="col-lg-8 mapDiv">
+            <div id="googleMap" style="width:75%;height:400px;"></div>
+          </div>
+        </div>
+      </row>
+
+      
+      
+    </section>
+
+    <section class="bg-dark text-white">
+      <div class="container text-center">
+        <h2 class="mb-4">Ride Share </h2>
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <div id="offerRequest">
+              <div class="col-lg-6">
+                <a class="btn btn-primary btn-xl js-scroll-trigger" href="#portfolio">Login</a>
+              </div>
+              <div class="col-lg-6">
+                <a class="btn btn-primary btn-xl">Sign up</a>
+              </div>  
+            </div>    
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="vendor/scrollreveal/scrollreveal.min.js"></script>
+    <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="js/creative.min.js"></script>
+
+    <script>
+      function myMap() {
+        var mapProp= {
+            center:new google.maps.LatLng(51.508742,-0.120850),
+            zoom:5,
+        };
+        var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+      }
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqnbDDZdGNHuoFZk6LM3Jwq2JE8iVv7OA&callback=myMap"></script>
+
+  </body>
+
+</html>

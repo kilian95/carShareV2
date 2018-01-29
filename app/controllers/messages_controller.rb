@@ -12,9 +12,6 @@ def create
       created_at: message.created_at.strftime("%d %B %H:%M"),
       avatar: message.user.avatar.url.to_s  
     )
-    # respond_to do |format|
-    #   format.js { render :js => "scrollToBottom();" }
-    # end
   else
     redirect_to chats_path
   end

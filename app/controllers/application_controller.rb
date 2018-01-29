@@ -12,4 +12,13 @@ class ApplicationController < ActionController::Base
 		devise_parameter_sanitizer.permit(:account_update, keys: [:firstName, :lastName, :gender, :bio, :phone, :dob, :year, :make, :model, :avatar])
 	end
 
+	#redirect admins to admin homepage. Redirect users to user homepage.
+	def after_sign_in_path_for(current_user)
+    if admin_signed_in?
+    	admins_root_path
+    elsif user_signed_in?
+    	root_path
+    end		
+	end
+
 end
