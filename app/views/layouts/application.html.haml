@@ -7,24 +7,19 @@
 		= csrf_meta_tags
 		= action_cable_meta_tag
 	%body	
-		-flash.each do |name, msg|
-			=content_tag :div, msg, class: "alert alert-info"
-
-		%nav.navbar.navbar-default.custom
-			.container-fluid
-				.navbar-header
-					.navbar-brand 
-						=link_to " Car Share ", root_path
-				%ul.nav.navbar-nav
+		%nav.navbar.navbar-expand-lg.navbar-fixed-top#mainNav
+			.container
+				.navbar-brand
+					=link_to " Car Share ", root_path
+				%ul.nav.navbar-nav.navbar-right
 					-if user_signed_in?
-						%li.active
-							=link_to "Home", root_path		
-						%li 
-							=link_to "Offer a Lift", new_offer_path
-						%li
-							=link_to "My Account", user_path(current_user)
-						%li
-							= link_to "Sign Out", destroy_user_session_path, method: :delete
+						%ul.nav.navbar-nav	
+							%li.nav-item
+								=link_to "Offer a Lift", new_offer_path, class: "nav-link"
+							%li.nav-item
+								=link_to "My Account", user_path(current_user), class: "nav-link"
+							%li.nav-item
+								= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "nav-link"
 					-elsif admin_signed_in?
 						%li 
 							=link_to "Dashboard", admins_root_path
@@ -33,13 +28,12 @@
 						%li
 							=link_to "Users", admins_users_path
 						%li
-							= link_to "Sign Out", destroy_admin_session_path, method: :delete		
-									
+							= link_to "Sign Out", destroy_admin_session_path, method: :delete					
 					-else
-						%li.active
-							=link_to "Home", root_path	
-						%li
-							= link_to "Sign In", new_user_session_path
+						%li.nav-item
+							%a.nav-link{"data-target" => "#signInModal", "data-toggle" => "modal", "href" => ""} Sign In
+						%li.nav-item
+							%a.nav-link{"data-target" => "#signUpModal", "data-toggle" => "modal", "href" => ""} Sign Up
 
-		.contentsContainer		
-			= yield
+			
+		= yield

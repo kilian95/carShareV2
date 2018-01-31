@@ -4,8 +4,6 @@ $(function () {
 
   $('[data-toggle="tooltip"]').tooltip();  
     
-
-
   $('#datetimepicker1').datetimepicker({
     //change to rails datetime format
     format : "YYYY-MM-DD HH:mm:ss",
@@ -87,6 +85,9 @@ $(function () {
       }
     });
   });
+
+ 
+    
 
 });
 

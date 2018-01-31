@@ -1,45 +1,79 @@
+/modal for sign in and sign up
+=render 'devise/sessions/modalNew'
+=render 'devise/registrations/modalNew'
+
 %header.masthead.text-white.text-center
 	.overlay
 	.container
 		.row
-			.col-xl-9.mx-auto
-				%h1.mb-5 Find a ride
+			.col-lg-12.mx-auto#homeHeader
+				%h1.text-uppercase.black
+					%strong Lets travel together
+				%hr	
 		.row		
-			.col-lg-3
-			.col-lg-6
+			.col-lg-12.mx-auto.headerBtns
+				#offerRequest
+				.col-lg-6
+					%a.btn.btn-primary.btn-xl.js-scroll-trigger.pull-right{:href => "#search"} Find Lift
+				.col-lg-6
+					%a.btn.btn-primary.btn-xl.pull-left Offer Lift
+			
+%section#about
+	.container
+		.row
+			.col-lg-12.text-center
+				%h2.section-heading How Ride Share works
+				%hr.my-4/
+	.container
+		.row
+			.col-lg-3.col-md-6.text-center
+				.service-box.mt-5.mx-auto
+					%i.fa.fa-4x.fa-user.text-primary.mb-3.sr-icons
+					%h3.mb-3 1. Join
+					%p.text-muted.mb-0 Its free and quick to do.
+			.col-lg-3.col-md-6.text-center
+				.service-box.mt-5.mx-auto
+					%i.fa.fa-4x.fa-map-marker.text-primary.mb-3.sr-icons
+					%h3.mb-3 2. Search for a lift
+					%p.text-muted.mb-0 Lorem ipsum dolor amet tote bag 90's.
+			.col-lg-3.col-md-6.text-center
+				.service-box.mt-5.mx-auto
+					%i.fa.fa-4x.fa-road.text-primary.mb-3.sr-icons
+					%h3.mb-3 3. Select a driver
+					%p.text-muted.mb-0 Lorem ipsum dolor amet tote bag 90's.
+			.col-lg-3.col-md-6.text-center
+				.service-box.mt-5.mx-auto
+					%i.fa.fa-4x.fa-gbp.text-primary.mb-3.sr-icons
+					%h3.mb-3 4. Save money
+					%p.text-muted.mb-0 Lorem ipsum dolor amet tote bag 90's.
+
+%section#search.p-0
+	.row
+		.col-lg-12.text-center
+			%h2.section-heading Search for Availble Lifts
+			%hr.my-4/
+	%row
+		#searchHome
+			#searchInput.col-lg-4.text-center
 				= search_form_for @search, url: search_path do |f|
 					.form-row
-						.col-12.col-md-6.mb-2.mb-md-0.search
-							=f.text_field :pickup_cont, class: "form-control form-control-lg", placeholder: 'Leaving from...'
-							=f.text_field :dropoff_cont, class: "form-control form-control-lg", placeholder: 'Going to ...'
-							%button.btn.btn-default#search{:type => "submit"} Search
-		-if !user_signed_in?					
-			.row
-				.col-md-3
-				.col-lg-6
-					=link_to "Sign In", new_user_session_path, class: "btn btn-lg btn-primary"
-			
-%h1 Most Recent Lift Offers
+						.form-group.searchInputs.pull-right
+							=f.text_field :pickup_cont, class: "form-control form-control-lg", placeholder: 'Enter pickup location'
+						.form-group.searchInputs.pull-right
+							=f.text_field :dropoff_cont, class: "form-control form-control-lg", placeholder: 'Enter drop off location'	
+						%button.btn.btn-primary.btn-xl#search{:type => "submit"} Search
+			.col-lg-8.mapDiv
+				=render 'searchMap'
+				
 
-- @offers.each do |offer|
-	.panel.panel-primary.info
+
+%section.bg-dark.text-white
+	.container.text-center
+		%h2.mb-4.white Ride Share
 		.row
-			.col-sm-4
-				%h4 Pick Up:
-			.col-sm-4
-				%h4= link_to offer.pickup, offer	
-		.row
-			.col-sm-4
-				%h4 Drop Off:
-			.col-sm-4
-				%h4= link_to offer.dropoff, offer	
-		.row
-			.col-sm-4
-				%h4 Date:
-			.col-sm-4
-				%h4= offer.date.strftime("%d-%m-%Y at %H:%M")
-			.col-sm-4
-				%h5
-					Posted By: 
-					=link_to offer.user.firstName, user_path(offer.user.id)
-					=link_to offer.user.lastName, user_path(offer.user.id)
+			.col-lg-12.mx-auto
+				#offerRequest
+					.col-lg-6
+						%a.btn.btn-primary.btn-xl{:href => "/users/sign_in"} Login
+					.col-lg-6
+						%a.btn.btn-primary.btn-xl{:href => "/users/sign_up"} Sign up			

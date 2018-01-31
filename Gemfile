@@ -26,6 +26,8 @@ gem 'carrierwave', '~> 1.2', '>= 1.2.1'  #imageupload
 gem 'mini_magick', '~> 4.8' #imageupload
 gem 'ransack', '~> 1.7' #search
 gem 'kaminari', '~> 1.1', '>= 1.1.1' #paginator
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.3'
+gem 'jquery-easing-rails', '~> 0.0.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

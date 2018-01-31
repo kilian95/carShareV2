@@ -1,38 +1,28 @@
-= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-	= f.error_notification
+.container.contents
+	= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+		= f.error_notification
 
-	.row#signup
-		.col-sm-6#joinText 
-			%h3 Join today and start sharing lifts!
-			%p All users are verified. Lorem ipsum dolor amet bitters ethical +1, blue bottle kickstarter freegan single-origin coffee selfies raw denim polaroid lomo mlkshk paleo. Shabby chic woke pinterest leggings, gentrify tacos poke neutra. XOXO poke cray tattooed enamel pin. Kinfolk kombucha vaporware, typewriter pug sartorial fingerstache tilde everyday carry raclette lyft.
-			= image_tag("Carpool.jpg", :alt => "carpooling", :id => "carpool")
-		.col-sm-6
-			.signupForm
-				%h2 Sign up 
-				.form-inputs
-					.col-sm-4.pull-left
-						= f.input :firstName, required: true, autofocus: true, label: false, placeholder: 'First Name'
-						= f.input :lastName, required: true, autofocus: true, label: false, placeholder: 'Last Name'
-						= f.input :email, required: true, autofocus: true, label: false, placeholder: 'Email'
-						= f.input :password, required: true, label: false, placeholder: 'Password' 
-						= f.input :password_confirmation, required: true, label: false, placeholder: 'Password Confirmation'
+		.row#signup
+			.col-sm-6#joinText 
+				%h3 Join today and start sharing lifts!
+				%p All users are verified. Lorem ipsum dolor amet bitters ethical +1, blue bottle kickstarter freegan single-origin coffee selfies raw denim polaroid lomo mlkshk paleo. Shabby chic woke pinterest leggings, gentrify tacos poke neutra. XOXO poke cray tattooed enamel pin. Kinfolk kombucha vaporware, typewriter pug sartorial fingerstache tilde everyday carry raclette lyft.
+				= image_tag("Carpool.jpg", :alt => "carpooling", :id => "carpool")
+			.col-sm-6
+				.signupForm
+					%h2 Sign up 
+					.form-inputs
+						.col-sm-4.pull-left
+							= f.input :firstName, required: true, autofocus: true, label: false, placeholder: 'First Name'
+							= f.input :lastName, required: true, autofocus: true, label: false, placeholder: 'Last Name'
+							= f.input :email, required: true, autofocus: true, label: false, placeholder: 'Email'
+							= f.input :password, required: true, label: false, placeholder: 'Password' 
+							= f.input :password_confirmation, required: true, label: false, placeholder: 'Password Confirmation'
 
-						#gender
-							= f.radio_button :gender, 'Male'
-							Male &nbsp
-							= f.radio_button :gender, 'Female' 
-							Female
+							#gender
+								= f.radio_button :gender, 'Male'
+								Male &nbsp
+								= f.radio_button :gender, 'Female' 
+								Female
 
-						.form-actions
-							= f.button :submit, "Sign up", :class => "btn btn-primary btn-block"		
-	/ .row
-	/ 	.col-sm-4
-	/ 		%h4 Book a lift
-
-	/ 	.col-sm-4
-	/ 		%h4 Share
-
-	/ 	.col-sm-4
-	/ 		%h4 Share	
-   
-
+							.form-actions
+								= f.button :submit, "Sign up", :class => "btn btn-primary btn-block"		
