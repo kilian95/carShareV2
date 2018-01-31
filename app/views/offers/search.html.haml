@@ -1,27 +1,35 @@
 .container.contents
-	%h1 search results
+	.row.search
+		= search_form_for @search, url: search_path do |f|
+			.form-row
+				.col-md-6
+					.input-group
+						=f.text_field :pickup_cont, class: "form-control form-control-lg", placeholder: 'Enter pickup location'
+						%span.input-group-addon to
+						=f.text_field :dropoff_cont, class: "form-control form-control-lg", placeholder: 'Enter drop off location'
+			%button.btn.btn-primary#search{:type => "submit"} Search
 
 	//show search results
 	.searchResults
-		-@offerResults.each do |offerResult|
-			.panel.panel-primary.info
-				.row
-					.col-sm-4
-						%h4 Pick Up:
-					.col-sm-4
-						%h4= link_to offerResult.pickup, offerResult
-				.row
-					.col-sm-4
-						%h4 Drop Off:
-					.col-sm-4
-						%h4= link_to offerResult.dropoff, offerResult	
-				.row
-					.col-sm-4
-						%h4 Date:
-					.col-sm-4
-						%h4= offerResult.date.strftime("%d-%m-%Y at %H:%M")
-					.col-sm-4
-						%h5
-							Posted By: 
-							=link_to offerResult.user.firstName, user_path(offerResult.user.id)
-							=link_to offerResult.user.lastName, user_path(offerResult.user.id)
+		.row
+			.col-md-6
+				-@offerResults.each do |offerResult|
+					.row
+						.col-md-12
+							.panel.panel-primary.info
+								.row
+									.col-sm-3.resultsAvatar
+										=image_tag offerResult.user.avatar.url.to_s
+									.col-sm-4
+										=offerResult.pickup
+									.col-sm-4
+										=offerResult.dropoff		
+								.row
+									.col-sm-3.text-center				
+										=link_to offerResult.user.firstName, user_path(offerResult.user.id)
+									.col-sm-4
+										=offerResult.date.strftime("%B %d at %H:%m")
+			.col-md-6
+				=render 'map'
+						
+							
