@@ -16,8 +16,12 @@
 				.col-lg-6
 					%a.btn.btn-primary.btn-xl.js-scroll-trigger.pull-right{:href => "#search"} Find Lift
 				.col-lg-6
-					%a.btn.btn-primary.btn-xl.pull-left Offer Lift
-			
+					-if user_signed_in?
+						%a.btn.btn-primary.btn-xl.pull-left{:href => "/offers/new"} Offer Lift
+					-else
+						/ if user is not signed in scroll to bottom of index which leads to user to signin or sign up	
+						%a.btn.btn-primary.btn-xl.pull-left{:href => "#offer"} Offer Lift
+
 %section#about
 	.container
 		.row
@@ -54,26 +58,49 @@
 			%hr.my-4/
 	%row
 		#searchHome
-			#searchInput.col-lg-4.text-center
+			#searchInput.col-lg-3.text-center
 				= search_form_for @search, url: search_path do |f|
 					.form-row
 						.form-group.searchInputs.pull-right
-							=f.text_field :pickup_cont, class: "form-control form-control-lg", placeholder: 'Enter pickup location'
+							=f.text_field :pickup_cont, class: "form-control form-control-lg", id: "origin-input", placeholder: 'Enter pickup location'
+
 						.form-group.searchInputs.pull-right
-							=f.text_field :dropoff_cont, class: "form-control form-control-lg", placeholder: 'Enter drop off location'	
+							=f.text_field :dropoff_cont, class: "form-control form-control-lg", id: "destination-input", placeholder: 'Enter drop off location'	
 						%button.btn.btn-primary.btn-xl#search{:type => "submit"} Search
-			.col-lg-8.mapDiv
-				=render 'searchMap'
-				
+			.col-lg-6.mapDiv
+				/ displays map and route
+				=render 'map' 
+
+%section#offer.p-0
+	.row
+		.col-lg-12.text-center
+			%h2.section-heading Offering a Lift
+			%hr.my-4/
+	%row
+		.col-lg-12.text-center
+			%p.text-muted.mb-0 Offering a lift is quick and easy to do. You can set the route of the journey, the price and any car rules such as smoking, eating etc..... Before you can offer a lift you must have an account.
+	.container
+		.row
+			.col-lg-4.col-md-8.text-center
+				.service-box.mt-5.mx-auto
+					%i.fa.fa-4x.fa-user.text-primary.mb-3.sr-icons
+					%h3.mb-3 Meet interesting people
+			.col-lg-4.col-md-8.text-center
+				.service-box.mt-5.mx-auto
+					%i.fa.fa-4x.fa-globe.text-primary.mb-3.sr-icons
+					%h3.mb-3 Reduce your carbon footprint
+			.col-lg-4.col-md-8.text-center
+				.service-box.mt-5.mx-auto
+					%i.fa.fa-4x.fa-gbp.text-primary.mb-3.sr-icons
+					%h3.mb-3 Save money			
+	%row
+		.col-lg-12.text-center
+			-if user_signed_in?
+				%a.btn.btn-primary.btn-xl{:href => "/offers/new"}	Get Started
+			-else				
+				%a.btn.btn-primary.btn-xl#getStarted{:href => "/users/sign_up"}	Get Started
 
 
 %section.bg-dark.text-white
 	.container.text-center
 		%h2.mb-4.white Ride Share
-		.row
-			.col-lg-12.mx-auto
-				#offerRequest
-					.col-lg-6
-						%a.btn.btn-primary.btn-xl{:href => "/users/sign_in"} Login
-					.col-lg-6
-						%a.btn.btn-primary.btn-xl{:href => "/users/sign_up"} Sign up			

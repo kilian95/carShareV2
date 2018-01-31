@@ -20,8 +20,9 @@
         .step1
           %h3 Step 1
           %p#tip Enter in the pickup and drop off location in the map opposite.
-          = f.input :pickup, :readonly => true, input_html: {class: 'form-control', id: 'pickup'}
-          = f.input :dropoff, :readonly => true , input_html: {class: 'form-control', id: 'dropoff'}
+          =f.text_field :pickup, class: "form-control form-control-lg", id: "origin-input", placeholder: 'Enter pickup location'
+          / = f.input :pickup, :readonly => true, input_html: {class: 'form-control', id: 'pickup'}
+          =f.text_field :dropoff, class: "form-control form-control-lg", id: "destination-input", placeholder: 'Enter drop off location'
           = f.input :description, input_html: {class: 'form-control', id: "destination"}
           .customLabel
             = f.label :date, "Time and Date"
