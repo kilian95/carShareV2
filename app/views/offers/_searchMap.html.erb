@@ -1,0 +1,40 @@
+<div id="map"></div>
+
+  
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqnbDDZdGNHuoFZk6LM3Jwq2JE8iVv7OA&libraries=places&callback=initMap" async defer></script>
+
+<script type="text/javascript">
+
+  function initMap() {
+	  var directionsService = new google.maps.DirectionsService;
+	  var directionsDisplay = new google.maps.DirectionsRenderer;
+	  var map = new google.maps.Map(document.getElementById('map'), {
+	    zoom: 13,
+	    center: {lat: 54.602724, lng:-5.929291}
+	  });
+	  directionsDisplay.setMap(map);
+
+	  //display route when mouse enters info div
+	  $(".info").mouseenter(function(){
+	    var pickup = $(this).find("#pickup").text();
+	    var dropoff = $(this).find("#dropoff").text();
+	    console.log("hello");
+	    calculateAndDisplayRoute(directionsService, directionsDisplay, pickup, dropoff);    
+  	});
+	}
+
+function calculateAndDisplayRoute(directionsService, directionsDisplay, pickup, dropoff) {
+  directionsService.route({
+    origin: pickup,
+    destination: dropoff,
+    travelMode: 'DRIVING'
+  }, function(response, status) {
+    if (status === 'OK') {
+      directionsDisplay.setDirections(response);
+    } else {
+      window.alert('Directions request failed due to ' + status);
+    }
+  });
+}
+
+</script>  
