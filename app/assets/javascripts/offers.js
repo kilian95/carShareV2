@@ -1,6 +1,6 @@
 $(function () {
 
-  //_form.html.haml --------------------------------
+  //------------------offer/new --------------------------------
 
   $('[data-toggle="tooltip"]').tooltip();  
     
@@ -85,6 +85,14 @@ $(function () {
       }
     });
   });
+
+  //------------------offer/search --------------------------------
+
+  //when user clicks info div redirect to offer/show/id
+  $(".info").click(function(){
+    window.location = $(this).find("#pickup a").attr("href");
+  });
+
 });
 
 

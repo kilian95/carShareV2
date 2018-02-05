@@ -18,7 +18,6 @@
 	  $(".info").mouseenter(function(){
 	    var pickup = $(this).find("#pickup").text();
 	    var dropoff = $(this).find("#dropoff").text();
-	    console.log("hello");
 	    calculateAndDisplayRoute(directionsService, directionsDisplay, pickup, dropoff);    
   	});
 	}

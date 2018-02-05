@@ -21,15 +21,13 @@
 									.col-sm-3.resultsAvatar
 										=image_tag offerResult.user.avatar.url.to_s
 									.col-sm-4#pickup
-										=offerResult.pickup
+										=link_to offerResult.pickup, offer_path(offerResult)	
 									.col-sm-4#dropoff
-										=offerResult.dropoff		
+										=link_to offerResult.dropoff, offer_path(offerResult)		
 								.row
 									.col-sm-3.text-center				
 										=link_to offerResult.user.firstName, user_path(offerResult.user.id)
 									.col-sm-4
 										=offerResult.date.strftime("%B %d at %H:%m")
 			.col-md-6
-				=render 'searchMap'
-						
-							
+				=render 'searchMap'	
