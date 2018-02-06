@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180126171024) do
+ActiveRecord::Schema.define(version: 20180206170420) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,16 @@ ActiveRecord::Schema.define(version: 20180126171024) do
     t.integer "chat_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "notification_type"
+    t.integer "user_id"
+    t.integer "reciever_id"
+    t.integer "chat_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "offer_id"
   end
 
   create_table "offers", force: :cascade do |t|

@@ -41,7 +41,14 @@ class OffersController < ApplicationController
 			if @offer.user == current_user
 				redirect_to @offer, notice: "Offer was sucesfuly updated"
 			else 
-				redirect_to @offer, notice: "Lift succesfully booked"
+				#check if user has booked lift or cancelled lift
+				if (@offer.passenger_id == nil)
+					redirect_to @offer, notice: "Lift succesfully cancelled"
+					Notification.create(notification_type: 2, user_id: current_user.id, reciever_id: @offer.user.id, offer_id: @offer.id)
+				elsif (@offer.passenger_id != nil)
+					redirect_to @offer, notice: "Lift succesfully booked"
+					Notification.create(notification_type: 1, user_id: current_user.id, reciever_id: @offer.user.id, offer_id: @offer.id)			
+				end
 			end		
 		else
 			render 'edit'	

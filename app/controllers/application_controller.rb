@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+	before_action :set_notifications
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
@@ -21,4 +22,8 @@ class ApplicationController < ActionController::Base
     end		
 	end
 
+	#display notifications for current user
+	def set_notifications
+		@notifications = Notification.where(reciever_id: current_user).limit(5).order("created_at DESC")
+	end
 end

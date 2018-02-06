@@ -74,8 +74,8 @@ $(function () {
         $(".step1").css("display", "none");
         $(".step2").css("display", "block");
         //display price
-        var origin = $('#pickup').val();
-        var destination = $('#dropoff').val();
+        var origin = $('#origin-input').val();
+        var destination = $('#destination-input').val();
         var distance_text = calculateDistance(origin, destination); 
 
         //hide map inputs
@@ -89,11 +89,13 @@ $(function () {
   //------------------offer/search --------------------------------
 
   //when user clicks info div redirect to offer/show/id
-  $(".info").click(function(){
+  $(".info#searchItem").click(function(){
     window.location = $(this).find("#pickup a").attr("href");
   });
 
 });
+
+
 
 
   

@@ -123,8 +123,8 @@
 						= link_to(user_chats_path(current_user, :other_user => @offer.user.id), method: :post) do
 							%button.btn.btn-primary.btn-block.pull-right{:type => "button"} Private Message
 						= simple_form_for @offer, html: { multipart: true } do |f|
-							-if @offer.passenger_id != current_user
-								=f.hidden_field :passenger_id, value: current_user
+							-if @offer.passenger_id != current_user.id
+								=f.hidden_field :passenger_id, value: current_user.id
 								= f.button :submit, "Book This Lift", {class: "btn btn-primary btn-block"}
 							-else 
 								/ reset passenger_id if user cancels lift

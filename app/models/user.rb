@@ -9,6 +9,7 @@ class User < ApplicationRecord
 
 	has_many :offers
 	has_many :messages
+  has_many :notifications
   has_many :subscriptions
   has_many :chats, through: :subscriptions
 

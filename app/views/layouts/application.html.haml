@@ -18,6 +18,12 @@
 								=link_to "Offer a Lift", new_offer_path, class: "nav-link"
 							%li.nav-item
 								=link_to "My Account", user_path(current_user), class: "nav-link"
+							%li.dropdown.nav-link
+								%a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+									%span.glyphicon.glyphicon-envelope
+									%span.caret
+								%ul.dropdown-menu
+									=render 'notifications/navNotifications'
 							%li.nav-item
 								= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "nav-link"
 					-elsif admin_signed_in?
@@ -36,4 +42,4 @@
 							%a.nav-link{"data-target" => "#signUpModal", "data-toggle" => "modal", "href" => ""} Sign Up
 
 			
-		= yield
+		= yield		
