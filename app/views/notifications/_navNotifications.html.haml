@@ -1,16 +1,22 @@
 -@notifications.each do |notification|
 	
 	%li
-		-if (notification.notification_type == 1)
-			=link_to notification.user.firstName, user_path(notification.user_id)
-			=link_to "has booked your lift", offer_path(notification.offer_id)
-			
+		.row#navDropdown
+			.col-sm-3
+				=image_tag notification.user.avatar.url.to_s, :class => "notificationAvatar" 
+			.col-sm-9#notifType
+				-if (notification.notification_type == 1)
+					=link_to (notification.user.firstName + " has booked your lift"), offer_path(notification.offer_id) 
+				-elsif (notification.notification_type == 2)
+					=link_to (notification.user.firstName + " has cancelled your lift"), offer_path(notification.offer_id)
+				-if (notification.notification_type == 3)
+					%a New message from...
+					/ =link_to notification.sender_id, user_chats_path(current_user, :other_user => notification.sender_id)		
+				.row
+					.col-sm-12	
+						=notification.created_at.strftime("%d %B at %H:%M")
 
-		-if (notification.notification_type == 2)
-			=link_to notification.user.firstName, user_path(notification.user_id)
-			=link_to "has cancelled your lift", offer_path(notification.offer_id)
-
-		-if (notification.notification_type == 3)
-			%a New message from...
-			/ =link_to notification.sender_id, user_chats_path(current_user, :other_user => notification.sender_id)
-					
+:javascript
+	$(".row#navDropdown").click(function(){
+		window.location = $(this).find("#notifType a").attr("href");
+	});

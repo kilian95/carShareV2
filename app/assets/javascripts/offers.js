@@ -92,7 +92,6 @@ $(function () {
   $(".info#searchItem").click(function(){
     window.location = $(this).find("#pickup a").attr("href");
   });
-
 });
 
 

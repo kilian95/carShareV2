@@ -26,9 +26,11 @@
 }
 
 #map {
-  /*height: 50%;*/
-  /*height: 100%;*/
   height: 500px;
+}
+
+#showMap {
+  height: 250px;
 }
 
 .customLabel{
@@ -177,4 +179,9 @@ section#search{
 .col-md-6#liftInfo{
   overflow-y: scroll;
   height: 500px;
+}
+
+.form-control.form-control-lg#origin-input, .form-control.form-control-lg#destination-input{
+  margin-left: initial;
+  margin-bottom: 10px;
 }
