@@ -4,9 +4,9 @@
 			.form-row
 				.col-md-6
 					.input-group
-						=f.text_field :pickup_cont, class: "form-control form-control-lg", placeholder: 'Enter pickup location'
-						%span.input-group-addon to
-						=f.text_field :dropoff_cont, class: "form-control form-control-lg", placeholder: 'Enter drop off location'	
+						=f.text_field :pickup_cont, class: "form-control form-control-lg", id: "origin-input", placeholder: 'Enter pickup location'
+						
+						=f.text_field :dropoff_cont, class: "form-control form-control-lg", id: "destination-input", placeholder: 'Enter drop off location'	
 			%button.btn.btn-primary#search{:type => "submit"} Search
 
 	//show search results
@@ -29,5 +29,5 @@
 										=link_to offerResult.user.firstName, user_path(offerResult.user.id)
 									.col-sm-4
 										=offerResult.date.strftime("%B %d at %H:%m")
-			.col-md-6
-				=render 'searchMap'	
+			.col-md-6	
+				=render 'map'
