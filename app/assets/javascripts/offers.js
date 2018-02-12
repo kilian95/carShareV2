@@ -92,6 +92,17 @@ $(function () {
   $(".info#searchItem").click(function(){
     window.location = $(this).find("#pickup a").attr("href");
   });
+
+  //------------------offer/show --------------------------------
+
+  //split string after comma
+  // var pickup = $("h2#pickupShow").text();
+  // pickup = pickup.split(',')[0];
+  // $("h2#pickupShow").html(pickup);
+
+  // var dropoff = $("h2#dropoffShow").text();
+  // dropoff = dropoff.split(',')[0];
+  // $("h2#dropoffShow").html(dropoff);
 });
 
 

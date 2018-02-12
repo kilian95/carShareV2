@@ -1,6 +1,4 @@
 <div id="showMap"></div>
-
-  
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqnbDDZdGNHuoFZk6LM3Jwq2JE8iVv7OA&libraries=places&callback=initMap" async defer></script>
 
 <script type="text/javascript">
@@ -13,13 +11,10 @@
 	    center: {lat: 54.602724, lng:-5.929291}
 	  });
 	  directionsDisplay.setMap(map);
+	  var pickup = $("#pickupShow").text();
+	  var dropoff = $("#dropoffShow").text();
+	  calculateAndDisplayRoute(directionsService, directionsDisplay, pickup, dropoff);
 
-	  //display route when mouse enters info div
-	  // $(".info").mouseenter(function(){
-	  //   var pickup = $(this).find("#pickup").text();
-	  //   var dropoff = $(this).find("#dropoff").text();
-	  //   calculateAndDisplayRoute(directionsService, directionsDisplay, pickup, dropoff);    
-  	// });
 	}
 
 function calculateAndDisplayRoute(directionsService, directionsDisplay, pickup, dropoff) {

@@ -1,132 +1,59 @@
 .container.contents
 	=render 'showMap'
-	%h2
-		=@offer.pickup
-		to
-		=@offer.dropoff
+	
 
-	.row
-		.col-lg-4
-			.panel.panel-primary.blue
-				.panel-Heading
-					.row
-						.col-xs-3
-							%span.glyphicon.glyphicon-user
-						.col-xs-9.text-right
-							%h1= @offer.seats
-							-if @offer.seats < 2
-								Seat Available!
-							-else
-								Seats Available!
-				.panel-footer.blue
-					£
-					= @offer.price
-					per passenger.
-
-		.col-lg-4
-			.panel.panel-primary.green
-				.panel-Heading
-					.row
-						.col-xs-3
-							%span.glyphicon.glyphicon-hourglass
-						.col-xs-9.text-right
-							%h1= @offer.flexibility
-							-if @offer.flexibility == "On time"
-								No Flexibility
-							-else	
-								Flexibility!		
-				.panel-footer.green
-					The amount of time the driver is willing to wait.
-
-		.col-lg-4
-			.panel.panel-primary.red
-				.panel-Heading
-					.row
-						.col-xs-3
-							%span.glyphicon.glyphicon-road
-						.col-xs-9.text-right
-							%h1= @offer.detour
-							-if @offer.detour == "10 Miles"
-								Max for detour!
-							-elsif @offer.detour == "None"
-								No Detour	
-							
-				.panel-footer.red
-					Distance willing to travel to pick up passengers. 
 	.row
 		.col-lg-8
-			.panel.panel-primary.info
+			.panel#rideInfo
 				.row
-					.col-sm-4
-						%h4 Pick Up:
-					.col-sm-4
-					%h4= @offer.pickup
-				.row
-					.col-sm-4
-						%h4 Drop Off:
-					.col-sm-4
-					%h4= @offer.dropoff	
-				.row
-					.col-sm-4
-						%h4 Date:
-					.col-sm-4
-					%h4= @offer.date.strftime("%d-%m-%y at %H:%M")			
-		.col-lg-4
-			.panel.panel-primary.info	
-				.row
-					.col-sm-6
-						%h5 Smoking:
-					.col-sm-6
-						-if @offer.smoking
-							%h5 Permitted
-						-else	
-							%h5 Not permitted
-				.row
-					.col-sm-6
-						%h5 Food:
-					.col-sm-6
-						-if @offer.food
-							%h5 Permitted
-						-else	
-							%h5 Not permitted
-				.row
-					.col-sm-6
-						%h5 Luggage:
-					.col-sm-6
-						%h5= @offer.luggage							
-	.row
-		.col-lg-8
-			.panel.panel-primary.info
-				%h4 Driver
-				.row
-					.col-sm-4.avatar
-						=image_tag @offer.user.avatar.url.to_s
-							
-					.col-sm-4
-						%h4
-							=link_to @offer.user.firstName, user_path(@offer.user.id)
-							=link_to @offer.user.lastName, user_path(@offer.user.id)
-						%p 
-							Member since:
-							=@offer.user.created_at.strftime("%d-%m-%Y")
+					.col-md-12
+						%h2#pickupShow
+							=@offer.pickup
+						to &nbsp
+						%h2#dropoffShow
+							=@offer.dropoff
+				.row#rideInfo
+					.col-md-12		
+						%ul.list-inline
+							%li.list-inline-item
+								%span.glyphicon.glyphicon-user
+								= @offer.seats
+								-if @offer.seats < 2
+									Seat Available!
+								-else
+									Seats Available!
+							%li.list-inline-item
+								%span.glyphicon.glyphicon-hourglass		
+								= @offer.flexibility
+								-if @offer.flexibility == "On time"
+									No Flexibility
+								-else	
+									Flexibility		
+							%li.list-inline-item
+								%span.glyphicon.glyphicon-road
+								= @offer.detour
+								detour
+				.row#rideInfo
+					.col-md-12
+						One off lift:
+						=@offer.date.strftime("%B %d at %H:%m")					
 
-						-if @offer.user.make	
-							%p
-								Drives a 
-								=@offer.user.year.strftime("%Y")
-								=@offer.user.make	
-								=@offer.user.model		
 		.col-lg-4
 			/ only display if offer is not made by the current user
 			-if user_signed_in?
 				-if @offer.user != current_user
-					.panel.panel-primary.info
-						= link_to(user_chats_path(current_user, :other_user => @offer.user.id), method: :post) do
-							%button.btn.btn-primary.btn-block.pull-right{:type => "button"} Private Message
+					.panel.panel-primary.info#rideInfo
+						.row
+							.col-md-12.text-center
+								%h3.inline
+									£
+									=@offer.price 
+								per passenger
+
 						= simple_form_for @offer, html: { multipart: true } do |f|
 							-if @offer.passenger_id != current_user.id
 								=f.hidden_field :passenger_id, value: current_user.id
-								= f.button :submit, "Book This Lift", {class: "btn btn-primary btn-block"}
+								= f.button :submit, "Book This Lift", {class: "btn btn-primary btn-block margintop20"}
 							-else 
 								/ reset passenger_id if user cancels lift
 								=f.hidden_field :passenger_id, value: nil
@@ -136,8 +63,54 @@
 					%p 
 						You must
 						= link_to "Sign In", new_user_session_path
-						in in order to book this lift.						
-						
+						in in order to book this lift.							
+		
+								
+	.row
+		.col-lg-8
+			.panel.descriptionShow#rideInfo
+				.row
+					.col-sm-2.avatarShow
+						=image_tag @offer.user.avatar.url.to_s
+					.col-sm-4
+						%h4
+							Car driven by
+							=link_to @offer.user.firstName, user_path(@offer.user.id)
+							=link_to @offer.user.lastName, user_path(@offer.user.id)
+						-if @offer.user.make	
+							%p
+								Drives a 
+								=@offer.user.year.strftime("%Y")
+								=@offer.user.make	
+								=@offer.user.model
+					.col-sm-5
+						= link_to(user_chats_path(current_user, :other_user => @offer.user.id), method: :post) do
+							%button.btn.btn-primary.pull-right{:type => "button"} Ask a question			
+				.row
+					.col-md-12
+						%p=@offer.description									
+		.col-lg-4
+			.panel#rideInfo
+				.row
+					.col-sm-12
+						%h2 Car Rules
+					.col-sm-12
+						-if @offer.smoking
+							%h5 Smoking allowed
+						-else	
+							%h5 Smoking not allowed
+				.row
+					.col-sm-12
+						-if @offer.food
+							%h5 Food allowed
+						-else	
+							%h5 Food not allowed
+				.row
+					.col-sm-12
+						%h5
+							= @offer.luggage
+							luggage allowed
+
 	-if user_signed_in?
 		-if @offer.user == current_user
 			=link_to "Edit", edit_offer_path
