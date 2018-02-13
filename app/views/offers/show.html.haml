@@ -1,7 +1,5 @@
 .container.contents
 	=render 'showMap'
-	
-
 	.row
 		.col-lg-8
 			.panel#rideInfo
@@ -39,25 +37,32 @@
 						=@offer.date.strftime("%B %d at %H:%m")					
 
 		.col-lg-4
-			/ only display if offer is not made by the current user
-			-if user_signed_in?
+			/ only display if offer is not made by the current user and the date has not passed
+			-if user_signed_in? 
 				-if @offer.user != current_user
-					.panel.panel-primary.info#rideInfo
-						.row
-							.col-md-12.text-center
-								%h3.inline
-									£
-									=@offer.price 
-								per passenger
+					-if @isValid
+						.panel.panel-primary.info#rideInfo
+							.row
+								.col-md-12.text-center
+									%h3.inline
+										£
+										=@offer.price 
+									per passenger
 
-						= simple_form_for @offer, html: { multipart: true } do |f|
-							-if @offer.passenger_id != current_user.id
-								=f.hidden_field :passenger_id, value: current_user.id
-								= f.button :submit, "Book This Lift", {class: "btn btn-primary btn-block margintop20"}
-							-else 
-								/ reset passenger_id if user cancels lift
-								=f.hidden_field :passenger_id, value: nil
-								= f.button :submit, "Cancel lift", {class: "btn btn-primary btn-block"}
+							= simple_form_for @offer, html: { multipart: true } do |f|
+								-if @offer.passenger_id != current_user.id
+									=f.hidden_field :passenger_id, value: current_user.id
+									= f.button :submit, "Book This Lift", {class: "btn btn-primary btn-block margintop20"}
+								-else 
+									/ reset passenger_id if user cancels lift
+									=f.hidden_field :passenger_id, value: nil
+									= f.button :submit, "Cancel lift", {class: "btn btn-primary btn-block"}
+					-else
+						.panel.panel-danger
+							.panel-heading
+								This lift has already taken place
+							.panel-body.text-center
+								=link_to "Find a Lift", search_path, class: "btn btn-primary"	
 			-else
 				.panel.panel-primary.info
 					%p 
@@ -84,8 +89,9 @@
 								=@offer.user.make	
 								=@offer.user.model
 					.col-sm-5
-						= link_to(user_chats_path(current_user, :other_user => @offer.user.id), method: :post) do
-							%button.btn.btn-primary.pull-right{:type => "button"} Ask a question			
+						-if current_user.id != @offer.user.id
+							= link_to(user_chats_path(current_user, :other_user => @offer.user.id), method: :post) do
+								%button.btn.btn-primary.pull-right{:type => "button"} Ask a question			
 				.row
 					.col-md-12
 						%p=@offer.description									

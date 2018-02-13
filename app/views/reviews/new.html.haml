@@ -1,0 +1,22 @@
+.container.contents
+	%h3 
+		Write a Review for
+		=@reviewee.firstName
+		=@reviewee.lastName
+	= simple_form_for ([@user, @review]), html: { multipart: true } do |f|
+		.form-group
+			=f.text_area :description, class: "form-control", placeholder: 'Enter review here'
+			
+			= f.input :comfort, input_html: {id: "starRating"}, :label => "Comfort", :collection => ["1", "2", "3", "4", "5"]
+			
+			= f.input :punctual, input_html: {id: "starRating"}, :label => "Punctual", :collection => ["1", "2", "3", "4", "5"]
+			
+			= f.input :communication, input_html: {id: "starRating"}, :label => "Communication", :collection => ["1", "2", "3", "4", "5"]
+			
+			= f.input :driving, input_html: {id: "starRating"}, :label => "Driving", :collection => ["1", "2", "3", "4", "5"]
+
+			#hide
+				=f.input :rating, input_html: {id: "rating"}
+			=f.hidden_field :reviewee_id, value: @reviewee.id
+		= f.button :submit, {class: "btn btn-primary btn-block"}
+	

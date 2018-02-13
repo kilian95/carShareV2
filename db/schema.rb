@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180207214122) do
+ActiveRecord::Schema.define(version: 20180213213159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,8 +74,22 @@ ActiveRecord::Schema.define(version: 20180207214122) do
     t.string "detour"
     t.integer "miles"
     t.integer "passenger_id"
+    t.boolean "reviewed"
     t.index ["passenger_id"], name: "index_offers_on_passenger_id"
     t.index ["user_id"], name: "index_offers_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "reviewee_id"
+    t.text "description"
+    t.integer "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "communication"
+    t.integer "comfort"
+    t.integer "punctual"
+    t.integer "driving"
   end
 
   create_table "subscriptions", force: :cascade do |t|

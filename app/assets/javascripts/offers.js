@@ -4,10 +4,7 @@ $(function () {
 
   $('[data-toggle="tooltip"]').tooltip();  
     
-  $('#datetimepicker1').datetimepicker({
-    //change to rails datetime format
-    format : "YYYY-MM-DD HH:mm:ss",
-  });
+  
 
   $("#pickup").click(function() {
     $("#tip").css("display", "block");
@@ -93,17 +90,16 @@ $(function () {
     window.location = $(this).find("#pickup a").attr("href");
   });
 
-  //------------------offer/show --------------------------------
-
-  //split string after comma
-  // var pickup = $("h2#pickupShow").text();
-  // pickup = pickup.split(',')[0];
-  // $("h2#pickupShow").html(pickup);
-
-  // var dropoff = $("h2#dropoffShow").text();
-  // dropoff = dropoff.split(',')[0];
-  // $("h2#dropoffShow").html(dropoff);
+  
 });
+
+document.addEventListener("turbolinks:load", function() {
+  $('#datetimepicker1').datetimepicker({
+    //change to rails datetime format
+    format : "YYYY-MM-DD HH:mm:ss",
+  });
+
+})
 
 
 

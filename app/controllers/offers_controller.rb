@@ -8,11 +8,16 @@ class OffersController < ApplicationController
 
 	def search
 		@search = Offer.search(params[:q])
-		@offerResults = @search.result.order("created_at DESC")
+		@offerResults = @search.result.where("date > ?", 1.days.ago).order("created_at DESC")
 	end
 
 	def show
-
+		#check if the date of the lift has already passed
+		if @offer.date < Date.today
+			@isValid = false
+		else
+			@isValid = true
+		end	
 	end
 
 	def new
@@ -59,7 +64,7 @@ class OffersController < ApplicationController
 
 	def offer_params
 		params.require(:offer).permit(:pickup, :dropoff, :description, :luggage,
-		:smoking, :flexibility, :seats, :food, :date, :price, :detour, :miles, :passenger_id)
+		:smoking, :flexibility, :seats, :food, :date, :price, :detour, :miles, :passenger_id, :reviewed)
 	end
 
 	# finds correct offer

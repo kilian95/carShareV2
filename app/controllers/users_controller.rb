@@ -9,10 +9,30 @@ class UsersController < ApplicationController
     @totalOffers = @user.offers.size
     @offers = @user.offers.limit(3).order("created_at DESC")
 
-    @allOffers = Offer.all.order("created_at DESC") # maybe limit
+    @bookedLifts = Offer.where(passenger_id: @user.id)
+                        .where("date < ?", 1.days.ago)
+                        .order("created_at DESC")
 
-    @bookedLifts = @allOffers.where(passenger_id: @user.id).order("created_at DESC")
-    @totalBooked = @bookedLifts.size
+    #reviews-------------------------------------------------------------
+    @reviews = Review.where(reviewee_id: @user.id).order("created_at DESC")
+    @totalReviews = @reviews.count
+    #get overall average rating and round to nearest 0.5 decimal
+    @averageRating = @reviews.average(:rating)
+    @ratingRounded = (@averageRating*2).ceil.to_f / 2
+
+    #get average rating for indivudal ratings
+    @averageCommunication = @reviews.average(:communication)
+    @communicationRounded = (@averageCommunication*2).ceil.to_f / 2
+
+    @averageComfort = @reviews.average(:comfort)
+    @comfortRounded = (@averageComfort*2).ceil.to_f / 2
+
+    @averageDriving = @reviews.average(:driving)
+    @drivingRounded = (@averageDriving*2).ceil.to_f / 2
+
+    @averagePunctual = @reviews.average(:punctual)
+    @punctualRounded = (@averagePunctual*2).ceil.to_f / 2
+
   end 
 
   private

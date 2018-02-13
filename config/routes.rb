@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get '/search' => 'offers#search'
 	resources :users, only:[:show] do 
 		resources :chats, only: [:index, :show, :create]
+    resources :reviews
 	end
 
   namespace :admins do

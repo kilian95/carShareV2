@@ -8,6 +8,7 @@ class User < ApplicationRecord
   scope :last_x_days, -> (x) { where(created_at: x.days.ago..Time.zone.now) }       
 
 	has_many :offers
+  has_many :reviews
 	has_many :messages
   has_many :notifications
   has_many :subscriptions
