@@ -86,43 +86,55 @@
 						Reviews
 						- @ratingRounded.to_i.times do
 							%span.glyphicon.glyphicon-star#filled
+						/ If rating is .5 display half filled star	
+						-if @ratingRounded % 1 != 0
+							%span.glyphicon.glyphicon-star#halfStar
+
 						- @blankStars.to_i.times do
 							%span.glyphicon.glyphicon-star
 						(
 						=@totalReviews
 						reviews
 						)
-					%h4
-						Summary
-					%p	
-						Communication 
-						- @communicationRounded.to_i.times do
-							%span.glyphicon.glyphicon-star#filled
-						- @user.blank_stars(@communicationRounded).to_i.times do
-							%span.glyphicon.glyphicon-star
-						
-						Comfort
-						- @comfortRounded.to_i.times do
-							%span.glyphicon.glyphicon-star#filled
-						- @user.blank_stars(@comfortRounded).to_i.times do
-							%span.glyphicon.glyphicon-star
-						=@comfortRounded
-						
-						Punctual
-						- @punctualRounded.to_i.times do
-							%span.glyphicon.glyphicon-star#filled
-						- @user.blank_stars(@punctualRounded).to_i.times do
-							%span.glyphicon.glyphicon-star 
-						=@punctualRounded
-					
-						Driving
-						- @drivingRounded.to_i.times do
-							%span.glyphicon.glyphicon-star#filled
-						- @user.blank_stars(@drivingRounded).to_i.times do
-							%span.glyphicon.glyphicon-star
-						=@drivingRounded
-					
-						
+					.panel	
+						%h4 Summary
+						%ul.list-inline
+							%li.list-inline-item
+								Communication 
+								- @communicationRounded.to_i.times do
+									%span.glyphicon.glyphicon-star#filled
+								-if @communicationRounded % 1 != 0
+									%span.glyphicon.glyphicon-star#halfStar	
+								- @user.blank_stars(@communicationRounded).to_i.times do
+									%span.glyphicon.glyphicon-star
+
+							%li.list-inline-item
+								Comfort
+								- @comfortRounded.to_i.times do
+									%span.glyphicon.glyphicon-star#filled
+								-if @comfortRounded % 1 != 0
+									%span.glyphicon.glyphicon-star#halfStar	
+								- @user.blank_stars(@comfortRounded).to_i.times do
+									%span.glyphicon.glyphicon-star
+							
+							%li.list-inline-item
+								Punctual
+								- @punctualRounded.to_i.times do
+									%span.glyphicon.glyphicon-star#filled
+								-if @punctualRounded % 1 != 0
+									%span.glyphicon.glyphicon-star#halfStar		
+								- @user.blank_stars(@punctualRounded).to_i.times do
+									%span.glyphicon.glyphicon-star 
+							
+							%li.list-inline-item
+								Driving
+								- @drivingRounded.to_i.times do
+									%span.glyphicon.glyphicon-star#filled
+								-if @drivingRounded % 1 != 0
+									%span.glyphicon.glyphicon-star#halfStar		
+								- @user.blank_stars(@drivingRounded).to_i.times do
+									%span.glyphicon.glyphicon-star
+							
 					- @reviews.each do |review|
 						.panel
 							.row
@@ -134,34 +146,3 @@
 								.col-md-8
 									%p=review.description
 									%p=review.created_at.strftime("%B %Y")
-							
-
-						
-
-
-
-	/ .row.margintop20
-	/ 	.col-md-8
-	/ 		%ul.nav.nav-tabs
-	/ 			%li.active
-	/ 				%a{"data-toggle" => "tab", :href => "#1"} Overview
-	/ 			%li
-	/ 				%a{"data-toggle" => "tab", :href => "#2"} Reviews
-	/ 			%li
-	/ 				%a{"data-toggle" => "tab", :href => "#3"} Solution
-	/ 		.tab-content
-	/ 			#1.tab-pane.active
-					
-	/ 				.panel
-	/ 					%h4 Recent Lift Offers
-	/ 					- @offers.each do |offer|
-	/ 						.row
-	/ 							.col-md-12
-	/ 								%h4
-	/ 									=link_to offer.pickup, offer
-	/ 									to
-	/ 									=link_to offer.dropoff, offer		
-	/ 			#2.tab-pane
-	/ 				%h3 Notice the gap between the content and tab after applying a background color
-	/ 			#3.tab-pane
-	/ 				%h3 add clearfix to tab-content 
