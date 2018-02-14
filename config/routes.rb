@@ -7,11 +7,13 @@ Rails.application.routes.draw do
   devise_for :admins
 
   resources :messages, only:[:create]
-  resources :offers
+  resources :offers do
+    resources :reviews
+  end
   get '/search' => 'offers#search'
 	resources :users, only:[:show] do 
 		resources :chats, only: [:index, :show, :create]
-    resources :reviews
+    
 	end
 
   namespace :admins do

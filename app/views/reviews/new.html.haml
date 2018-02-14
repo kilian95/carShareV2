@@ -7,7 +7,7 @@
 	.col-md-3.avatar
 		=image_tag @reviewee.avatar.url.to_s
 	.col-md-9	
-		= simple_form_for ([@user, @review]), html: { multipart: true } do |f|
+		= simple_form_for ([@offer, @review]), html: { multipart: true } do |f|
 			.form-group
 				=f.label :description, "* Describe your experience"
 
@@ -65,7 +65,7 @@
 				#hide
 					=f.input :rating, input_html: {id: "rating"}
 				=f.hidden_field :reviewee_id, value: @reviewee.id
-			= f.button :submit, {class: "btn btn-primary btn-block"}
+			= f.button :submit, {class: "btn btn-primary btn-block reviewBtn"}
 	=@reviewee.id
 		
 		

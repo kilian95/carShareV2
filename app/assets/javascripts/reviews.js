@@ -1,7 +1,7 @@
 document.addEventListener("turbolinks:load", function() {
 
   //get average rating
-  $(".btn-block").mouseenter(function() {
+  $(".btn-block.reviewBtn").mouseenter(function() {
     var total = 0;  
     $( "input#starRating").each(function() {
       rating = $(this).val();

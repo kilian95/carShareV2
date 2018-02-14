@@ -62,20 +62,22 @@
 										=link_to offer.pickup, offer
 										to
 										=link_to offer.dropoff, offer
-			.row
-				.col-md-12
-					.panel								
-						-if @user == current_user
-							.col-md-12
-								.panel
-									%h4 Write a review for your drivers
-									- @bookedLifts.each do |bookedLift|
-										.row
-											.col-md-12
-												%h4
-													=link_to bookedLift.user.firstName, new_user_review_path(bookedLift.user.id)
-													who drove to 
-													=bookedLift.dropoff
+
+				-if @bookedLifts.count != 0							
+					.row
+						.col-md-12
+							.panel								
+								-if @user == current_user
+									.col-md-12
+										.panel
+											%h4 Write a review for your drivers
+											- @bookedLifts.each do |bookedLift|
+												.row
+													.col-md-12
+														%h4
+															=link_to bookedLift.user.firstName, new_offer_review_path(bookedLift.id)
+															who drove to 
+															=bookedLift.dropoff
 
 		-if @ratingRounded 
 			.col-md-9

@@ -9,7 +9,10 @@ class UsersController < ApplicationController
     @totalOffers = @user.offers.size
     @offers = @user.offers.limit(3).order("created_at DESC")
 
+    # show lifts that user has shared. Can only review lift once
+    # and can only review after data of lift has passed
     @bookedLifts = Offer.where(passenger_id: @user.id)
+                        .where(reviewed: 'f')
                         .where("date < ?", 1.days.ago)
                         .order("created_at DESC")
 
@@ -39,7 +42,7 @@ class UsersController < ApplicationController
 
   end
 
-   
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
