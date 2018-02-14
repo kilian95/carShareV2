@@ -18,22 +18,28 @@ class UsersController < ApplicationController
     @totalReviews = @reviews.count
     #get overall average rating and round to nearest 0.5 decimal
     @averageRating = @reviews.average(:rating)
-    @ratingRounded = (@averageRating*2).ceil.to_f / 2
+    # if average rating exists/not null
+    if @averageRating
+        @ratingRounded = (@averageRating*2).ceil.to_f / 2
+        @blankStars = 5 - @ratingRounded
 
-    #get average rating for indivudal ratings
-    @averageCommunication = @reviews.average(:communication)
-    @communicationRounded = (@averageCommunication*2).ceil.to_f / 2
+        #get average rating for indivudal ratings
+        @averageCommunication = @reviews.average(:communication)
+        @communicationRounded = (@averageCommunication*2).ceil.to_f / 2
 
-    @averageComfort = @reviews.average(:comfort)
-    @comfortRounded = (@averageComfort*2).ceil.to_f / 2
+        @averageComfort = @reviews.average(:comfort)
+        @comfortRounded = (@averageComfort*2).ceil.to_f / 2
 
-    @averageDriving = @reviews.average(:driving)
-    @drivingRounded = (@averageDriving*2).ceil.to_f / 2
+        @averageDriving = @reviews.average(:driving)
+        @drivingRounded = (@averageDriving*2).ceil.to_f / 2
 
-    @averagePunctual = @reviews.average(:punctual)
-    @punctualRounded = (@averagePunctual*2).ceil.to_f / 2
+        @averagePunctual = @reviews.average(:punctual)
+        @punctualRounded = (@averagePunctual*2).ceil.to_f / 2
+    end    
 
-  end 
+  end
+
+   
 
   private
     # Use callbacks to share common setup or constraints between actions.

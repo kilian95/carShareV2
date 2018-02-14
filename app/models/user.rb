@@ -23,4 +23,9 @@ class User < ApplicationRecord
     end
     existing_chat_users.uniq
   end
+
+  #subtract 5 from rating to get amount of blank stars.
+  def blank_stars(rating)
+    5 - rating
+  end
 end

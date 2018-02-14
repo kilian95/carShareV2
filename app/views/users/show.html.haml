@@ -61,54 +61,77 @@
 									%h4
 										=link_to offer.pickup, offer
 										to
-										=link_to offer.dropoff, offer	
+										=link_to offer.dropoff, offer
+			.row
+				.col-md-12
+					.panel								
+						-if @user == current_user
+							.col-md-12
+								.panel
+									%h4 Write a review for your drivers
+									- @bookedLifts.each do |bookedLift|
+										.row
+											.col-md-12
+												%h4
+													=link_to bookedLift.user.firstName, new_user_review_path(bookedLift.user.id)
+													who drove to 
+													=bookedLift.dropoff
 
-		-if @user == current_user
+		-if @ratingRounded 
 			.col-md-9
 				.panel
-					%h3 Write a review for your drivers
-					- @bookedLifts.each do |bookedLift|
-						.row
-							.col-md-12
-								%h4
-									=link_to bookedLift.user.firstName, new_user_review_path(bookedLift.user.id)
-									who drove to 
-									=bookedLift.dropoff
-
-
-		.col-md-9
-			.panel
-				%h3 
-					Reviews
-					=@ratingRounded
-					=@totalReviews
-				%h4
-					Summary
-				%p	
-					Communication 
-					=@communicationRounded
+					%h3 
+						Reviews
+						- @ratingRounded.to_i.times do
+							%span.glyphicon.glyphicon-star#filled
+						- @blankStars.to_i.times do
+							%span.glyphicon.glyphicon-star
+						(
+						=@totalReviews
+						reviews
+						)
+					%h4
+						Summary
+					%p	
+						Communication 
+						- @communicationRounded.to_i.times do
+							%span.glyphicon.glyphicon-star#filled
+						- @user.blank_stars(@communicationRounded).to_i.times do
+							%span.glyphicon.glyphicon-star
+						
+						Comfort
+						- @comfortRounded.to_i.times do
+							%span.glyphicon.glyphicon-star#filled
+						- @user.blank_stars(@comfortRounded).to_i.times do
+							%span.glyphicon.glyphicon-star
+						=@comfortRounded
+						
+						Punctual
+						- @punctualRounded.to_i.times do
+							%span.glyphicon.glyphicon-star#filled
+						- @user.blank_stars(@punctualRounded).to_i.times do
+							%span.glyphicon.glyphicon-star 
+						=@punctualRounded
 					
-					Comfort
-					=@comfortRounded
+						Driving
+						- @drivingRounded.to_i.times do
+							%span.glyphicon.glyphicon-star#filled
+						- @user.blank_stars(@drivingRounded).to_i.times do
+							%span.glyphicon.glyphicon-star
+						=@drivingRounded
 					
-					Punctual 
-					=@punctualRounded
-				
-					Driving
-					=@drivingRounded
-				
-					
-				- @reviews.each do |review|
-					.panel
-						.row
-							.col-md-2.resultsAvatar
-								=image_tag review.user.avatar.url.to_s
-								.row
-									.col-md-12.text-center
-										=link_to review.user.firstName, user_path(review.user.id)
-							.col-md-8
-								%p=review.description
-								%p=review.created_at.strftime("%B %Y")
+						
+					- @reviews.each do |review|
+						.panel
+							.row
+								.col-md-2.resultsAvatar
+									=image_tag review.user.avatar.url.to_s
+									.row
+										.col-md-12.text-center
+											=link_to review.user.firstName, user_path(review.user.id)
+								.col-md-8
+									%p=review.description
+									%p=review.created_at.strftime("%B %Y")
 							
 
 						

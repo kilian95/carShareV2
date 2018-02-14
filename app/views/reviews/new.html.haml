@@ -1,22 +1,71 @@
 .container.contents
 	%h3 
-		Write a Review for
+		Review for
 		=@reviewee.firstName
 		=@reviewee.lastName
-	= simple_form_for ([@user, @review]), html: { multipart: true } do |f|
-		.form-group
-			=f.text_area :description, class: "form-control", placeholder: 'Enter review here'
-			
-			= f.input :comfort, input_html: {id: "starRating"}, :label => "Comfort", :collection => ["1", "2", "3", "4", "5"]
-			
-			= f.input :punctual, input_html: {id: "starRating"}, :label => "Punctual", :collection => ["1", "2", "3", "4", "5"]
-			
-			= f.input :communication, input_html: {id: "starRating"}, :label => "Communication", :collection => ["1", "2", "3", "4", "5"]
-			
-			= f.input :driving, input_html: {id: "starRating"}, :label => "Driving", :collection => ["1", "2", "3", "4", "5"]
+	.row
+	.col-md-3.avatar
+		=image_tag @reviewee.avatar.url.to_s
+	.col-md-9	
+		= simple_form_for ([@user, @review]), html: { multipart: true } do |f|
+			.form-group
+				=f.label :description, "* Describe your experience"
 
-			#hide
-				=f.input :rating, input_html: {id: "rating"}
-			=f.hidden_field :reviewee_id, value: @reviewee.id
-		= f.button :submit, {class: "btn btn-primary btn-block"}
-	
+				=f.text_area :description, class: "form-control", placeholder: 'How was your experience sharing a lift?'
+				%hr
+				.comfort
+					=f.label :comfort
+					%p.text-muted
+						How comfortable was the journey?
+					%span.fa.fa-star.comfort
+					%span.fa.fa-star.comfort
+					%span.fa.fa-star.comfort
+					%span.fa.fa-star.comfort
+					%span.fa.fa-star.comfort
+					= f.input :comfort, input_html: {:class => "hide", id: "starRating"}, :label => false
+					%hr
+
+				.punctual
+					=f.label :punctual
+					%p.text-muted
+						Was the driver on time?
+					%span.fa.fa-star
+					%span.fa.fa-star
+					%span.fa.fa-star
+					%span.fa.fa-star
+					%span.fa.fa-star
+					= f.input :punctual, input_html: {:class => "hide", id: "starRating"}, :label => false
+					%hr
+
+				.communication	
+					=f.label :communication
+					%p.text-muted
+						Did the driver reply to messages in a timely maner?
+					%span.fa.fa-star
+					%span.fa.fa-star
+					%span.fa.fa-star
+					%span.fa.fa-star
+					%span.fa.fa-star
+					
+					= f.input :communication, input_html: {:class => "hide", id: "starRating"}, :label =>false
+					%hr
+
+				.driving
+					=f.label :driving
+					%p.text-muted
+						How was the driving? Did you feel safe?
+					%span.fa.fa-star
+					%span.fa.fa-star
+					%span.fa.fa-star
+					%span.fa.fa-star
+					%span.fa.fa-star	
+					= f.input :driving, input_html: {:class => "hide", id: "starRating"}, :label => false
+					%hr
+
+				#hide
+					=f.input :rating, input_html: {id: "rating"}
+				=f.hidden_field :reviewee_id, value: @reviewee.id
+			= f.button :submit, {class: "btn btn-primary btn-block"}
+	=@reviewee.id
+		
+		
