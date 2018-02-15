@@ -11,17 +11,19 @@
 	.row
 		.col-md-6
 			.col-md-6
-				Limit to home address(
-				%span#home-address
-					=current_user.home_address
-				)
-				%input#home{:name => "gender", :type => "checkbox", :value => "male"}
+				-if current_user.home_address
+					Limit to home address(
+					%span.address#pickup
+						=current_user.home_address
+					)
+					%input#pickup{:type => "checkbox"}
 			.col-md-6
-				Limit to work address(
-				%span#work-address
-					=current_user.work_address
-				)
-				%input#work{:name => "gender", :type => "checkbox", :value => "male"}
+				-if current_user.work_address
+					Limit to work address(
+					%span.address#dropoff
+						=current_user.work_address
+					)
+					%input#dropoff{:name => "gender", :type => "checkbox", :value => "male"}
 
 			
 

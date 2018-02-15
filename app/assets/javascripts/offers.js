@@ -61,6 +61,7 @@ $(function () {
   }
 
   $("#continueBtn").click(function() {
+
     //check inputs have not been left blank
     $(".step1 input").each(function() {
       var element = $(this);
@@ -83,60 +84,14 @@ $(function () {
     });
   });
 
+  
+
   //------------------offer/search --------------------------------
 
   //when user clicks info div redirect to offer/show/id
   $(".info#searchItem").click(function(){
     window.location = $(this).find("#pickup a").attr("href");
   });
-
-  var homeAddress = $("span#home-address").text();
-  //limit search to home or work address
-  $('#home:checkbox').change(function(){
-    if ($(this).is(':checked')) {
-      $( ".col-sm-4#pickup").each(function() {
-        var str = $(this).text();
-        if (str.indexOf(homeAddress) >= 0){
-          
-        }else{
-          $(this).closest(".panel-primary.info").hide();
-        }
-      })
-    }else {
-      $( ".panel-primary.info").each(function() {
-        $(this).show();
-      })
-     
-    }
-  })
-
-
-  function displayNearByHome{
-
-  }
-  var workAddress = $("span#work-address").text();
-  //limit search to home or work address
-  $('#work:checkbox').change(function(){
-    if ($(this).is(':checked')) {
-      $( ".col-sm-4#dropoff").each(function() {
-        var str = $(this).text();
-        if (str.indexOf(workAddress) >= 0){
-          
-        }else{
-          $(this).closest(".panel-primary.info").hide();
-        }
-      })
-    }else {
-      $( ".panel-primary.info").each(function() {
-        $(this).show();
-      })
-    }
-  })
-
-  //if both are checed unticking one will show all instead of limiting
-
-
-  
 });
 
 document.addEventListener("turbolinks:load", function() {
@@ -145,9 +100,38 @@ document.addEventListener("turbolinks:load", function() {
     format : "YYYY-MM-DD HH:mm:ss",
   });
 
+  function limitSearch(type, address){
+    //for each result check if the corresponding address contains the home/work address
+    $(".col-sm-4#" + type).each(function() {
+      var result = $(this).text();
+      if (result.indexOf(address) >= 0){
+      }else{
+        //hide results that do not contain address
+        $(this).closest(".panel-primary.info").hide();
+      }
+    })
+  }
+  //limit search to results near home or work address
+  $('input:checkbox').change(function(){
+    if ($(this).is(':checked')) {
+      //get type of checked box.
+      var type = $(this).attr('id');
+      //get address for home/work
+      var address = $("span.address#" + type).text();
+      limitSearch(type, address);
+    }//else if user unticks box 
+    else{
+      //show the hidden results
+      $( ".panel-primary.info").each(function() {
+        $(this).show();
+      })
+      //if the other box is checked, narrow results.
+      //get the id of the other box.
+      var type = $(this).parent().siblings().children($("input")).attr('id');
+      var address = $(this).parent().siblings().children($("span")).text();
+      if ($("input#" + type).is(':checked')){
+        limitSearch(type, address);
+      }
+    }
+  })
 })
-
-
-
-
-  

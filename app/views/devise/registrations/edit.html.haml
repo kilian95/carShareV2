@@ -28,10 +28,10 @@
         = f.input :dob, :start_year => 1930, :end_year => 2000, autocomplete: "off", label: "Year of birth"
         = f.label :home_address, "Home and Work address"
         %p.text-muted
-          Providing your home and work address allows the search results to be more precise. 
+          Providing the city which you live in and work in allows the search results to be more precise. 
 
-        =f.text_field :home_address, id: "origin-input", placeholder: 'Enter pickup location'
-        =f.text_field :work_address, id: "destination-input", placeholder: 'Enter drop off location' 
+        =f.text_field :home_address, id: "pickup-input", placeholder: 'Enter city you live in'
+        =f.text_field :work_address, id: "dropoff-input", placeholder: 'Enter city you work in' 
 
       .panel.panel-primary.info  
         %h4 Your Car Infomation
@@ -46,21 +46,18 @@
     Unhappy? #{link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}
   = link_to "Back", :back
    
-
-/ javascript for autocomplete input 
-%script{:async => "", :defer => "defer", :src => "https://maps.googleapis.com/maps/api/js?key=AIzaSyDqnbDDZdGNHuoFZk6LM3Jwq2JE8iVv7OA&libraries=places&types=cities&callback=init"}
+  %script{:src => "http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places", :type => "text/javascript"}
 :javascript
-  function init() {
-    var directionsService = new google.maps.DirectionsService;  
-    var map;
-    new AutocompleteDirectionsHandler(map);
-  }
+  function initialize() {
+      var options = {
+        types: ['(cities)'],
+        componentRestrictions: {country: "uk"}
+      };
+  
+      var pickup = document.getElementById("pickup-input");
+      var dropoff = document.getElementById("dropoff-input");
+      var autocomplete = new google.maps.places.Autocomplete(pickup, options);
+      var autocomplete = new google.maps.places.Autocomplete(dropoff, options);
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
 
-  function AutocompleteDirectionsHandler(map) {
-    var originInput = document.getElementById('origin-input');
-    var destinationInput = document.getElementById('destination-input');
-    var originAutocomplete = new google.maps.places.Autocomplete(
-        originInput, {placeIdOnly: true});
-    var destinationAutocomplete = new google.maps.places.Autocomplete(
-        destinationInput, {placeIdOnly: true});
-  }
