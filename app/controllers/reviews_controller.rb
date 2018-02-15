@@ -17,6 +17,7 @@ class ReviewsController < ApplicationController
     if @review.save
     	redirect_to root_path, notice: "Sucesfully left a review"
     	@offer.update_attribute(:reviewed, true)
+    	Notification.create(notification_type: 4, user_id: current_user.id, reciever_id: @offer.user.id, offer_id: @offer.id)
     else
 			render 'new'	
 		end

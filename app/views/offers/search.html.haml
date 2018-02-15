@@ -8,6 +8,22 @@
 						
 						=f.text_field :dropoff_cont, class: "form-control form-control-lg", id: "destination-input", placeholder: 'Enter drop off location'	
 			%button.btn.btn-primary#search{:type => "submit"} Search
+	.row
+		.col-md-6
+			.col-md-6
+				Limit to home address(
+				%span#home-address
+					=current_user.home_address
+				)
+				%input#home{:name => "gender", :type => "checkbox", :value => "male"}
+			.col-md-6
+				Limit to work address(
+				%span#work-address
+					=current_user.work_address
+				)
+				%input#work{:name => "gender", :type => "checkbox", :value => "male"}
+
+			
 
 	//show search results
 	.searchResults

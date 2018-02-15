@@ -90,6 +90,52 @@ $(function () {
     window.location = $(this).find("#pickup a").attr("href");
   });
 
+  var homeAddress = $("span#home-address").text();
+  //limit search to home or work address
+  $('#home:checkbox').change(function(){
+    if ($(this).is(':checked')) {
+      $( ".col-sm-4#pickup").each(function() {
+        var str = $(this).text();
+        if (str.indexOf(homeAddress) >= 0){
+          
+        }else{
+          $(this).closest(".panel-primary.info").hide();
+        }
+      })
+    }else {
+      $( ".panel-primary.info").each(function() {
+        $(this).show();
+      })
+     
+    }
+  })
+
+
+  function displayNearByHome{
+
+  }
+  var workAddress = $("span#work-address").text();
+  //limit search to home or work address
+  $('#work:checkbox').change(function(){
+    if ($(this).is(':checked')) {
+      $( ".col-sm-4#dropoff").each(function() {
+        var str = $(this).text();
+        if (str.indexOf(workAddress) >= 0){
+          
+        }else{
+          $(this).closest(".panel-primary.info").hide();
+        }
+      })
+    }else {
+      $( ".panel-primary.info").each(function() {
+        $(this).show();
+      })
+    }
+  })
+
+  //if both are checed unticking one will show all instead of limiting
+
+
   
 });
 

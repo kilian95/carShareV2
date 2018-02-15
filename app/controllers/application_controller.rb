@@ -10,7 +10,8 @@ class ApplicationController < ActionController::Base
 		# allow these added paramaters to be set during sign up
 		devise_parameter_sanitizer.permit(:sign_up, keys: [:firstName, :lastName, :gender])
 		# allow these added paramaters to be edited after sign up.
-		devise_parameter_sanitizer.permit(:account_update, keys: [:firstName, :lastName, :gender, :bio, :phone, :dob, :year, :make, :model, :avatar])
+		devise_parameter_sanitizer.permit(:account_update, keys: [:firstName, :lastName, 
+			:gender, :bio, :phone, :dob, :year, :make, :model, :avatar, :home_address, :work_address])
 	end
 
 	#redirect admins to admin homepage. Redirect users to user homepage.
