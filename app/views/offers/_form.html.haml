@@ -30,6 +30,11 @@
               %span.input-group-addon
                 %span.glyphicon.glyphicon-calendar
               =f.text_field :date, input_html: {class: 'form-control'}
+          #returnTrip    
+            =f.input :return_trip
+          #returnTripTime 
+            =f.label :return_pickup_time, "Time of departure on return trip"
+            =f.input :return_pickup_time, :label => false   
               
           = f.input :seats, :label => "Available seats", :collection => ["1", "2", "3", "4"], :selected => "1", input_html: {id: 'noOfSeats'}
           %button.btn.btn-primary.btn-block#continueBtn{:type => "button"} Continue

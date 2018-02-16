@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180215123717) do
+ActiveRecord::Schema.define(version: 20180216221101) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,10 @@ ActiveRecord::Schema.define(version: 20180215123717) do
     t.integer "miles"
     t.integer "passenger_id"
     t.boolean "reviewed"
+    t.string "passengers_id", default: [], array: true
+    t.boolean "return_trip"
+    t.time "return_pickup_time"
+    t.boolean "return_booked", default: false
     t.index ["passenger_id"], name: "index_offers_on_passenger_id"
     t.index ["user_id"], name: "index_offers_on_user_id"
   end

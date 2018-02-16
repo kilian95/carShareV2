@@ -33,8 +33,14 @@
 								detour
 				.row#rideInfo
 					.col-md-12
-						One off lift:
-						=@offer.date.strftime("%B %d at %H:%m")					
+						Pick up at 
+						=@offer.date.strftime("%H:%m on %B %d ")
+						-if @offer.return_trip
+							%p
+								Return trip leaving from
+								=@offer.dropoff
+								at
+								=@offer.return_pickup_time.strftime("%H:%m")					
 
 		.col-lg-4
 			/ only display if offer is not made by the current user and the date has not passed
@@ -48,10 +54,15 @@
 										£
 										=@offer.price 
 									per passenger
-
+			
 							= simple_form_for @offer, html: { multipart: true } do |f|
 								-if @offer.passenger_id != current_user.id
 									=f.hidden_field :passenger_id, value: current_user.id
+									/ =f.hidden_field :passengers_id, value: current_user.id, as: :array
+									.text-center
+										-if @offer.return_trip		
+											=f.input :return_booked, :label => "Book return lift ( leaving at " + @offer.return_pickup_time.strftime("%H:%m") + " )"		
+
 									= f.button :submit, "Book This Lift", {class: "btn btn-primary btn-block margintop20"}
 								-else 
 									/ reset passenger_id if user cancels lift

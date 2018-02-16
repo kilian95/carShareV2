@@ -1,10 +1,8 @@
-$(function () {
+document.addEventListener("turbolinks:load", function() {
 
   //------------------offer/new --------------------------------
 
   $('[data-toggle="tooltip"]').tooltip();  
-    
-  
 
   $("#pickup").click(function() {
     $("#tip").css("display", "block");
@@ -92,9 +90,9 @@ $(function () {
   $(".info#searchItem").click(function(){
     window.location = $(this).find("#pickup a").attr("href");
   });
-});
 
-document.addEventListener("turbolinks:load", function() {
+
+
   $('#datetimepicker1').datetimepicker({
     //change to rails datetime format
     format : "YYYY-MM-DD HH:mm:ss",
@@ -132,6 +130,15 @@ document.addEventListener("turbolinks:load", function() {
       if ($("input#" + type).is(':checked')){
         limitSearch(type, address);
       }
+    }
+  })
+
+  //show time input if user clicks return trip
+  $('#offer_return_trip:checkbox').change(function(){
+    if ($(this).is(':checked')) {
+      $("#returnTripTime ").show();
+    }else{
+      $("#returnTripTime ").hide();
     }
   })
 })

@@ -6,7 +6,10 @@
 				=image_tag notification.user.avatar.url.to_s, :class => "notificationAvatar" 
 			.col-sm-9#notifType
 				-if (notification.notification_type == 1)
-					=link_to (notification.user.firstName + " has booked your lift"), offer_path(notification.offer_id) 
+					-if notification.offer.return_booked
+						=link_to (notification.user.firstName + " has booked your lift and the return trip"), offer_path(notification.offer_id)
+					-else
+						=link_to (notification.user.firstName + " has booked your lift"), offer_path(notification.offer_id)	 
 				-elsif (notification.notification_type == 2)
 					=link_to (notification.user.firstName + " has cancelled your lift"), offer_path(notification.offer_id)
 				-elsif (notification.notification_type == 3)
