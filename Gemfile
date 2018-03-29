@@ -28,6 +28,7 @@ gem 'ransack', '~> 1.7' #search
 gem 'kaminari', '~> 1.1', '>= 1.1.1' #paginator
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.3'
 gem 'jquery-easing-rails', '~> 0.0.2'
+gem 'tether-rails', '~> 1.4'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

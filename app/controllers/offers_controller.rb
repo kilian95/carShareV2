@@ -2,7 +2,7 @@ class OffersController < ApplicationController
 	before_action :find_offer, only: [:show, :edit, :update, :destroy]
 
 	def index
-		@offers = Offer.limit(5).order("created_at DESC")
+		@offers = Offer.limit(3).order("created_at DESC")
 		@search = Offer.search(params[:q])
 	end
 
@@ -39,6 +39,9 @@ class OffersController < ApplicationController
 	end
 
 	def edit
+		if current_user != @offer.user.id
+			redirect_to root_path
+		end	
 	end
 
 	def update

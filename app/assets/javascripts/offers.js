@@ -141,4 +141,10 @@ document.addEventListener("turbolinks:load", function() {
       $("#returnTripTime ").hide();
     }
   })
+
+  $('#myModal').on('shown.bs.modal', function () {
+    $('#myInput').trigger('focus')
+  })
+
+ 
 })

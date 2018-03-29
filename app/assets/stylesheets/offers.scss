@@ -173,8 +173,15 @@ section#search{
   background-color: #f1efef;
 }
 
-.row.search{
-  margin-bottom: 20px;
+.btn.search{
+  border-radius: initial;
+  background-color: #dfe1e2;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+
+.btn.search:hover{
+  background-color: #bbbaba;
 }
 
 .resultsAvatar img{
@@ -221,4 +228,8 @@ section#search{
 
 #bookReturn{
   margin-top: 10px;
+}
+
+.text-dark{
+  color: #343a40!important;
 }

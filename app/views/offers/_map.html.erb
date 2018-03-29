@@ -25,6 +25,20 @@
       var dropoff = $(this).find("#dropoff").text();
       calculateAndDisplayRoute(directionsService, directionsDisplay, pickup, dropoff);    
     });
+
+    var input = document.getElementById('origin-input');
+    google.maps.event.addDomListener(input, 'keydown', function(event) { 
+      if (event.keyCode === 13) { 
+          event.preventDefault(); 
+      }
+    });
+
+    var input1 = document.getElementById('destination-input');
+    google.maps.event.addDomListener(input1, 'keydown', function(event) { 
+      if (event.keyCode === 13) { 
+          event.preventDefault(); 
+      }
+    }); 
   }
 
    /**
@@ -115,5 +129,7 @@
       window.alert('Directions request failed due to ' + status);
     }
   });
+
+
 }
 </script>

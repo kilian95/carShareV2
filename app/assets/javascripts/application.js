@@ -17,6 +17,7 @@
 //= require moment
 //= require bootstrap-datetimepicker
 //= require jquery.easing
+//= require tether
 //= require offers
 //= require_tree .
 //= require_tree ./channels
