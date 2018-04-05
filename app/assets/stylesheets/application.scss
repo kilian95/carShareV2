@@ -191,7 +191,9 @@ img::-moz-selection {
 header.masthead {
   padding-top: 10rem;
   padding-bottom: calc(10rem - 56px);
-  background-image: url("header.jpg");
+  background-image: url("https://s3-eu-west-1.amazonaws.com/carshare2017/header.jpg");
+
+
   background-position: center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
