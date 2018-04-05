@@ -91,12 +91,18 @@ document.addEventListener("turbolinks:load", function() {
     window.location = $(this).find("#pickup a").attr("href");
   });
 
-
-
+  //calender
   $('#datetimepicker1').datetimepicker({
     //change to rails datetime format
-    format : "YYYY-MM-DD HH:mm:ss",
+    format : "YYYY-MM-DD HH:mm",
+    sideBySide: true
   });
+
+  //when user leaves calender input the selected date.
+  $('input#datetimepicker1').focusout(function(){
+    var bla = $('input#datetimepicker1').val();
+    $('#offer_date').val(bla);
+  })
 
   function limitSearch(type, address){
     //for each result check if the corresponding address contains the home/work address

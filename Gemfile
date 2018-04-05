@@ -30,12 +30,14 @@ gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.3'
 gem 'jquery-easing-rails', '~> 0.0.2'
 gem 'tether-rails', '~> 1.4'
 
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'rspec-rails', '~> 3.7', '>= 3.7.2'
 end
 
 group :development do
