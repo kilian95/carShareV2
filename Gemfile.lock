@@ -84,6 +84,8 @@ GEM
     erubi (1.7.0)
     excon (0.59.0)
     execjs (2.7.0)
+    faker (1.8.7)
+      i18n (>= 0.7)
     ffi (1.9.18)
     figaro (1.1.1)
       thor (~> 0.14)
@@ -288,6 +290,7 @@ DEPENDENCIES
   carrierwave (~> 1.2, >= 1.2.1)
   coffee-rails (~> 4.2)
   devise (~> 4.3)
+  faker (~> 1.8, >= 1.8.7)
   figaro (~> 1.1, >= 1.1.1)
   fog-aws
   font-awesome-rails (~> 4.7, >= 4.7.0.3)

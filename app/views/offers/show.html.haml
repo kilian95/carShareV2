@@ -100,9 +100,10 @@
 								=@offer.user.make	
 								=@offer.user.model
 					.col-sm-5
-						-if current_user.id != @offer.user.id
-							= link_to(user_chats_path(current_user, :other_user => @offer.user.id), method: :post) do
-								%button.btn.btn-primary.pull-right{:type => "button"} Ask a question			
+						-if user_signed_in?
+							-if current_user.id != @offer.user.id
+								= link_to(user_chats_path(current_user, :other_user => @offer.user.id), method: :post) do
+									%button.btn.btn-primary.pull-right{:type => "button"} Ask a question			
 				.row
 					.col-md-12
 						%p=@offer.description									
