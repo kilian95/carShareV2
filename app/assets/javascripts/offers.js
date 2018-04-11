@@ -96,6 +96,7 @@ document.addEventListener("turbolinks:load", function() {
     //change to rails datetime format
     format : "YYYY-MM-DD HH:mm",
     sideBySide: true
+
   });
 
   //when user leaves calender input the selected date.

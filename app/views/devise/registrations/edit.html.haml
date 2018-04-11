@@ -38,6 +38,7 @@
         = f.input :make, autocomplete: "off", :collection => ["Ford", "VolksWagen", "Skoda", "BMW", "Mercedes", "Nissan," "Kia", "Mini", "Suzuki", "Toyota", "Pugeot"], :selected => "Ford"
         = f.input :model, autocomplete: "off"
         = f.input :year, :start_year => 1980, :end_year => 2018, autocomplete: "off"
+       
       = f.input :current_password, hint: "we need your current password to confirm your changes", required: true
     .form-actions
       = f.button :submit, "Update"

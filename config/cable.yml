@@ -6,5 +6,7 @@ test:
 
 production:
   adapter: redis
-  url: redis://localhost:6379/1
+  url: redis://redistogo:73be9b54d887085749977e005d4822ed@crestfish.redistogo.com:11238/
   channel_prefix: carshareV2_production
+
+
