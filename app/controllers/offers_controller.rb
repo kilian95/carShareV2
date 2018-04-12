@@ -8,7 +8,7 @@ class OffersController < ApplicationController
 
 	def search
 		@search = Offer.search(params[:q])
-		@offerResults = @search.result.where("date > ?", 1.days.ago).order("created_at DESC")
+		@offerResults = @search.result.where("date > ?", 1.days.ago).order("created_at DESC").page(params[:page]).per(10)
 	end
 
 	def show

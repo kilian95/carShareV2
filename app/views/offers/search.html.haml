@@ -10,8 +10,6 @@
 							=f.label :dropoff
 							=f.text_field :dropoff_cont, class: "form-control form-control-lg", id: "destination-input", placeholder: 'Jordanstown'
 				%button.btn.btn-primary#search{:type => "submit"} Search
-		
-					
 	.row
 		.col-md-6
 			.col-md-6
@@ -35,21 +33,25 @@
 	.searchResults
 		.row
 			.col-md-6#liftInfo
-				-@offerResults.each do |offerResult|
-					.row
-						.col-md-12
-							.panel.panel-primary.info#searchItem
-								.row
-									.col-sm-3.resultsAvatar
-										=image_tag offerResult.user.avatar.url.to_s
-									.col-sm-4#pickup
-										=link_to offerResult.pickup, offer_path(offerResult)	
-									.col-sm-4#dropoff
-										=link_to offerResult.dropoff, offer_path(offerResult)		
-								.row
-									.col-sm-3.text-center				
-										=link_to offerResult.user.firstName, user_path(offerResult.user.id)
-									.col-sm-4
-										=offerResult.date.strftime("%B %d at %H:%m")
+				-if @offerResults.count == 0
+					%h3 No Lifts found
+				-else 	
+					-@offerResults.each do |offerResult|
+						.row
+							.col-md-12
+								.panel.panel-primary.info#searchItem
+									.row
+										.col-sm-3.resultsAvatar
+											=image_tag offerResult.user.avatar.url.to_s
+										.col-sm-4#pickup
+											=link_to offerResult.pickup, offer_path(offerResult)	
+										.col-sm-4#dropoff
+											=link_to offerResult.dropoff, offer_path(offerResult)		
+									.row
+										.col-sm-3.text-center				
+											=link_to offerResult.user.firstName, user_path(offerResult.user.id)
+										.col-sm-4
+											=offerResult.date.strftime("%B %d at %H:%m")
+							=paginate @offerResults					
 			.col-md-6	
 				=render 'map'
