@@ -25,6 +25,6 @@ class ApplicationController < ActionController::Base
 
 	#display notifications for current user
 	def set_notifications
-		@notifications = Notification.where(reciever_id: current_user).limit(5).order("created_at DESC")
+		@notifications = Notification.where(reciever_id: current_user).order("created_at DESC")
 	end
 end

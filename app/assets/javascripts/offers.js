@@ -152,6 +152,5 @@ document.addEventListener("turbolinks:load", function() {
   $('#myModal').on('shown.bs.modal', function () {
     $('#myInput').trigger('focus')
   })
-
  
 })

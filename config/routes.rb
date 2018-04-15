@@ -5,15 +5,17 @@ Rails.application.routes.draw do
 
   devise_for :users
   devise_for :admins
-
+  
   resources :messages, only:[:create]
   resources :offers do
     resources :reviews, only:[:create, :new]
   end
+
+  get 'notifications/:id/link_through', to: 'notifications#link_through', as: :link_through
   get '/search' => 'offers#search'
+
 	resources :users, only:[:show] do 
 		resources :chats, only: [:index, :show, :create]
-    
 	end
 
   namespace :admins do

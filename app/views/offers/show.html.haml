@@ -54,7 +54,6 @@
 										£
 										=@offer.price 
 									per passenger
-			
 							= simple_form_for @offer, html: { multipart: true } do |f|
 								-if @offer.passenger_id != current_user.id
 									=f.hidden_field :passenger_id, value: current_user.id

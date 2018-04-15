@@ -25,9 +25,11 @@
 							%li.dropdown.nav-link
 								%a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
 									%span.glyphicon.glyphicon-envelope
-									/ %span.caret
-								%ul.dropdown-menu#not
-									=render 'notifications/navNotifications'
+									- if @notifications.unread.count > 0
+										%span.badge
+											=@notifications.unread.count
+									%ul.dropdown-menu#not
+										=render 'notifications/navNotifications'
 							%li.nav-item
 								= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "nav-link"
 					-elsif admin_signed_in?
