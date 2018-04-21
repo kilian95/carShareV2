@@ -44,9 +44,15 @@
 					-else
 						%li.nav-item
 							%a.nav-link{"data-target" => "#signInModal", "data-toggle" => "modal", "href" => ""} Sign In
-						%li.nav-item
-							%a.nav-link{"data-target" => "#signUpModal", "data-toggle" => "modal", "href" => ""} Sign Up	
-		=render 'devise/sessions/modalNew'
-		=render 'devise/registrations/modalNew'
+						-	url = request.path_info
+						-if url.exclude?('admins')	
+							%li.nav-item
+								%a.nav-link{"data-target" => "#signUpModal", "data-toggle" => "modal", "href" => ""} Sign Up
+
+		/ if user is on admins page do not show signup as admins can only sign up via rails console.
+		-	url = request.path_info
+		-if url.exclude?('admins')				
+			=render 'devise/sessions/modalNew'
+			=render 'devise/registrations/modalNew'
 		= yield
 				
