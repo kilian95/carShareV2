@@ -45,5 +45,8 @@
 						%li.nav-item
 							%a.nav-link{"data-target" => "#signInModal", "data-toggle" => "modal", "href" => ""} Sign In
 						%li.nav-item
-							%a.nav-link{"data-target" => "#signUpModal", "data-toggle" => "modal", "href" => ""} Sign Up
-		= yield		
+							%a.nav-link{"data-target" => "#signUpModal", "data-toggle" => "modal", "href" => ""} Sign Up	
+		=render 'devise/sessions/modalNew'
+		=render 'devise/registrations/modalNew'
+		= yield
+				

@@ -12,20 +12,21 @@
 				%button.btn.btn-primary#search{:type => "submit"} Search
 	.row
 		.col-md-6
-			.col-md-6
-				-if current_user.home_address
-					Limit to home address(
-					%span.address#pickup
-						=current_user.home_address
-					)
-					%input#pickup{:type => "checkbox"}
-			.col-md-6
-				-if current_user.work_address
-					Limit to work address(
-					%span.address#dropoff
-						=current_user.work_address
-					)
-					%input#dropoff{:type => "checkbox"}
+			-if user_signed_in?
+				.col-md-6
+					-if current_user.home_address
+						Limit to home address(
+						%span.address#pickup
+							=current_user.home_address
+						)
+						%input#pickup{:type => "checkbox"}
+				.col-md-6
+					-if current_user.work_address
+						Limit to work address(
+						%span.address#dropoff
+							=current_user.work_address
+						)
+						%input#dropoff{:type => "checkbox"}
 
 			
 

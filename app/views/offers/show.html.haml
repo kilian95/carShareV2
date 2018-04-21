@@ -57,7 +57,6 @@
 							= simple_form_for @offer, html: { multipart: true } do |f|
 								-if @offer.passenger_id != current_user.id
 									=f.hidden_field :passenger_id, value: current_user.id
-									/ =f.hidden_field :passengers_id, value: current_user.id, as: :array
 									.text-center
 										-if @offer.return_trip		
 											=f.input :return_booked, :label => "Book return lift ( leaving at " + @offer.return_pickup_time.strftime("%H:%m") + " )"		
